@@ -62,6 +62,7 @@ function bashit_Instalador() {
 
     #Instalando dependencias
     echo -e "$verde Instalando dependencias de$rojo Bashit$gris"
+    sudo dnf install powerline powerline-fonts tmux-powerline vim-powerline powerline-go
 
     #Habilitar todos los plugins
     #TOFIX → Este paso solo puede hacerse correctamente cuando usamos /bin/bash
