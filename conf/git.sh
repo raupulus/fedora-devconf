@@ -24,7 +24,6 @@ verde="\033[1;32m"
 ##   Variables Generales   ##
 #############################
 
-DIR_ACTUAL=$(echo $PWD)
 nombre_git=""
 usuario_git=""
 correo_git=""

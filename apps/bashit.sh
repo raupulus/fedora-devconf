@@ -38,6 +38,9 @@ function bashit_Instalador() {
             rm -R ~/.bash_it 2>> /dev/null
             git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it && bash ~/.bash_it/install.sh --silent && break
         done
+
+        # Instalar dependencias
+        sudo dnf install powerline powerline-fonts tmux-powerline vim-powerline powerline-go
     fi
 
     if [ -f ~/.nvm/nvm.sh ] #Comprobar si ya esta instalado
