@@ -38,9 +38,6 @@ function bashit_Instalador() {
             rm -R ~/.bash_it 2>> /dev/null
             git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it && bash ~/.bash_it/install.sh --silent && break
         done
-
-        # Instalar dependencias
-        sudo dnf install powerline powerline-fonts tmux-powerline vim-powerline powerline-go
     fi
 
     if [ -f ~/.nvm/nvm.sh ] #Comprobar si ya esta instalado
@@ -65,6 +62,7 @@ function bashit_Instalador() {
 
     #Instalando dependencias
     echo -e "$verde Instalando dependencias de$rojo Bashit$gris"
+    sudo dnf install powerline powerline-fonts tmux-powerline vim-powerline powerline-go
 
     #Habilitar todos los plugins
     #TOFIX → Este paso solo puede hacerse correctamente cuando usamos /bin/bash
