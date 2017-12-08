@@ -17,3 +17,7 @@ function home() {
     # Crear enlace
     ln -s "$DIR_ACTUAL/conf/home/bashrc $HOME/.bashrc"
 }
+
+function configurar_Usuario() {
+    home
+}
