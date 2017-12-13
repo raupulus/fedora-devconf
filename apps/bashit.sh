@@ -28,7 +28,7 @@ function bashit_Instalador() {
     if [ -f ~/.bash_it/bash_it.sh ] #Comprobar si ya esta instalado
     then
         echo -e "$verde Ya esta$rojo Bash-It$verde instalado para este usuario, omitiendo paso$gris"
-        bash ~/.bash_it/install.sh --silent 2>> /dev/null
+        bash ~/.bash_it/install.sh --silent --no-modify-config 2>> /dev/null
     else
         REINTENTOS=5
 
