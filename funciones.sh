@@ -16,6 +16,8 @@
 ############################
 ##     INSTRUCCIONES      ##
 ############################
+## Este script tiene como objetivo ofrecer funciones recurrentes de
+## forma auxiliar para todos los demás scripts.
 
 ###########################
 ##       FUNCIONES       ##
