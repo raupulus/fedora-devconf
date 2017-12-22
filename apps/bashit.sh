@@ -32,29 +32,25 @@
 ##       FUNCIONES       ##
 ###########################
 bashit_Instalador() {
-    if [[ -f ~/.bash_it/bash_it.sh ]] ## Comprobar si ya esta instalado
-    then
+    if [[ -f ~/.bash_it/bash_it.sh ]]; then  ## Comprobar si ya esta instalado
         echo -e "$VE Ya esta$RO Bash-It$VE instalado para este usuario, omitiendo paso$CL"
         bash ~/.bash_it/install.sh --silent --no-modify-config 2>> /dev/null
     else
         REINTENTOS=5
 
         echo -e "$VE Descargando Bash-It$CL"
-        for (( i=1; i<=$REINTENTOS; i++ ))
-        do
+        for (( i=1; i<=$REINTENTOS; i++ )); do
             rm -R ~/.bash_it 2>> /dev/null
             git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it && bash ~/.bash_it/install.sh --silent && break
         done
     fi
 
-    if [[ -f ~/.nvm/nvm.sh ]] ## Comprobar si ya esta instalado
-    then
+    if [[ -f ~/.nvm/nvm.sh ]]; then  ## Comprobar si ya esta instalado
         echo -e "$VE Ya esta$RO nvm$VE instalado para este usuario, omitiendo paso$CL"
     else
         REINTENTOS=5
         echo -e "$VE Descargando nvm$CL"
-        for (( i=1; i<=$REINTENTOS; i++ ))
-        do
+        for (( i=1; i<=$REINTENTOS; i++ )); do
             rm -R ~/.nvm 2>> /dev/null
             git clone https://github.com/creationix/nvm.git ~/.nvm && ~/.nvm/install.sh && break
         done
@@ -75,8 +71,7 @@ bashit_Instalador() {
     ## TOFIX → Este paso solo puede hacerse correctamente cuando usamos /bin/bash
     plugins_habilitar="alias-completion aws base battery edit-mode-vi explain extract fasd git gif hg java javascript latex less-pretty-cat node nvm postgres projects python rails ruby sshagent ssh subversion xterm dirs nginx plenv pyenv"
 
-    if [[ -n $BASH ]] && [[ $BASH = '/bin/bash' ]]
-    then
+    if [[ -n $BASH ]] && [[ $BASH = '/bin/bash' ]]; then
         echo -e "$VE Habilitando todos los plugins para$RO Bashit$CL"
 
         ## Incorpora archivo de bashit
@@ -84,10 +79,9 @@ bashit_Instalador() {
         export BASH_IT_THEME='powerline-multiline'
         export SCM_CHECK=true
         export SHORT_TERM_LINE=true
-        source "$BASH_IT"/bash_it.sh
+        source "$BASH_IT/bash_it.sh"
 
-        for p in $plugins_habilitar
-        do
+        for p in $plugins_habilitar; do
             bash-it enable plugin $p
         done
 
