@@ -40,7 +40,7 @@ function home() {
     fi
 
     ## Crear enlace
-    ln -s "$DIR_ACTUAL/conf/home/bashrc" "$HOME/.bashrc"
+    ln -s "$WORKSCRIPT/conf/home/bashrc" "$HOME/.bashrc"
 }
 
 function configurar_Usuario() {
