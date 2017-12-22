@@ -32,12 +32,14 @@
 ##       FUNCIONES       ##
 ###########################
 function home() {
-    # Mover al directorio Backups el archivo .bashrc
-    if [ -f "$HOME/.bashrc" ]; then
+    ## Mover al directorio Backups el archivo .bashrc
+    if [[ -f "$HOME/.bashrc" ]]; then  ## Si es un archivo
         crearBackup "$HOME/.bashrc" && rm "$HOME/.bashrc"
+    else [[ -h "$HOME/.bashrc" ]]; then  ## Si es un enlace
+        rm "$HOME/.bashrc"
     fi
 
-    # Crear enlace
+    ## Crear enlace
     ln -s "$DIR_ACTUAL/conf/home/bashrc" "$HOME/.bashrc"
 }
 
