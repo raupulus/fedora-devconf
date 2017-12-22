@@ -33,7 +33,7 @@
 ###########################
 i3wm_dependencias() {
     echo -e "$VE Instalando Dependencias$CL"
-    dependencias='i3 i3status dmenu i3lock xbacklight feh mc links'
+    dependencias='i3 i3-ipc i3lock i3status python2-i3ipc python3-i3ipc dmenu xbacklight feh mc links'
 
     instalarSoftware "$dependencias"
 }
