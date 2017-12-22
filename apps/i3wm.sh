@@ -33,7 +33,7 @@
 ###########################
 i3wm_dependencias() {
     echo -e "$VE Instalando Dependencias$CL"
-    dependencias='i3 i3status dmenu i3lock xbacklight feh alsamixer nmcli mc links'
+    dependencias='i3 i3status dmenu i3lock xbacklight feh mc links'
 
     instalarSoftware "$dependencias"
 }
@@ -41,6 +41,6 @@ i3wm_dependencias() {
 ###########################
 ##       EJECUCIÓN       ##
 ###########################
-i3wm_instalador() {
+i3wm_Instalador() {
     i3wm_dependencias
 }
