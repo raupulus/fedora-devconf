@@ -1,31 +1,55 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # -*- ENCODING: UTF-8 -*-
-#######################################
-# ###     Raúl Caro Pastorino     ### #
-## ##                             ## ##
-### # https://github.com/fryntiz/ # ###
-## ##                             ## ##
-# ###       www.fryntiz.es        ### #
-#######################################
+##
+## @author     Raúl Caro Pastorino
+## @copyright  Copyright © 2017 Raúl Caro Pastorino
+## @license    https://wwww.gnu.org/licenses/gpl.txt
+## @email      tecnico@fryntiz.es
+## @web        www.fryntiz.es
+## @github     https://github.com/fryntiz
+## @gitlab     https://gitlab.com/fryntiz
+## @twitter    https://twitter.com/fryntiz
+##
+##             Guía de estilos aplicada:
+## @style      https://github.com/fryntiz/Bash_Style_Guide
 
 ############################
-##       Constantes      ##
+##     INSTRUCCIONES      ##
 ############################
-DIR_ACTUAL=`echo $PWD`
 
+############################
+##     IMPORTACIONES      ##
+############################
 
-# Crea un respaldo del archivo o directorio pasado como parámetro
-function crearBackup() {
+############################
+##       CONSTANTES       ##
+############################
+
+###########################
+##       VARIABLES       ##
+###########################
+
+###########################
+##       FUNCIONES       ##
+###########################
+##
+## Crea un respaldo del archivo o directorio pasado como parámetro
+##
+crearBackup() {
     for salvando in $*
     do
         if [ -f $salvando ]; then
             echo "Creando Backup del archivo $salvando"
-            cp $salvando $DIR_ACTUAL/Backups/
+            cp $salvando $WORKSCRIPT/Backups/
         elif [ -d $salvando ]; then
             echo "Creando Backup del directorio $salvando"
-            cp $salvando $DIR_ACTUAL/Backups/
+            cp $salvando $WORKSCRIPT/Backups/
         else
             echo "No se encuentra $salvando"
         fi
     done
 }
+
+###########################
+##       EJECUCIÓN       ##
+###########################
