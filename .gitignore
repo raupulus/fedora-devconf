@@ -2,3 +2,5 @@
 Backups/*
 /logs/*
 logs/*
+tmp/*
+/tmp/*
