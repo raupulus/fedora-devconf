@@ -26,14 +26,13 @@
 ## Crea un respaldo del archivo o directorio pasado como parámetro
 ##
 crearBackup() {
-    for salvando in $*
-    do
-        if [ -f $salvando ]; then
+    for salvando in $* do;
+        if [[ -f $salvando ]]; then
             echo "Creando Backup del archivo $salvando"
-            cp $salvando $WORKSCRIPT/Backups/
-        elif [ -d $salvando ]; then
+            cp "$salvando" "$WORKSCRIPT/Backups/"
+        elif [[ -d $salvando ]]; then
             echo "Creando Backup del directorio $salvando"
-            cp $salvando $WORKSCRIPT/Backups/
+            cp "$salvando" "$WORKSCRIPT/Backups/"
         else
             echo "No se encuentra $salvando"
         fi
@@ -58,6 +57,3 @@ instalarSoftware() {
         dnf install "$programa"
     done
 }
-###########################
-##       EJECUCIÓN       ##
-###########################
