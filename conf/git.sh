@@ -1,24 +1,40 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # -*- ENCODING: UTF-8 -*-
-#######################################
-# ###     Raúl Caro Pastorino     ### #
-## ##                             ## ##
-### # https://github.com/fryntiz/ # ###
-## ##                             ## ##
-# ###       www.fryntiz.es        ### #
-#######################################
+##
+## @author     Raúl Caro Pastorino
+## @copyright  Copyright © 2017 Raúl Caro Pastorino
+## @license    https://wwww.gnu.org/licenses/gpl.txt
+## @email      tecnico@fryntiz.es
+## @web        www.fryntiz.es
+## @github     https://github.com/fryntiz
+## @gitlab     https://gitlab.com/fryntiz
+##
+##             Guía de estilos aplicada:
+## @style      https://github.com/fryntiz/Bash_Style_Guide
 
 ############################
-##   Constantes Colores   ##
+##     INSTRUCCIONES      ##
 ############################
-amarillo="\033[1;33m"
-azul="\033[1;34m"
-blanco="\033[1;37m"
-cyan="\033[1;36m"
-gris="\033[0;37m"
-magenta="\033[1;35m"
-rojo="\033[1;31m"
-verde="\033[1;32m"
+
+############################
+##     IMPORTACIONES      ##
+############################
+
+############################
+##       CONSTANTES       ##
+############################
+
+###########################
+##       VARIABLES       ##
+###########################
+
+###########################
+##       FUNCIONES       ##
+###########################
+
+###########################
+##       EJECUCIÓN       ##
+###########################
 
 #############################
 ##   Variables Generales   ##
@@ -37,15 +53,15 @@ function datos_input() {
 
 function gpg_git() {
     clear
-    echo -e "$verde Configurando GPG para GIT$gris"
+    echo -e "$VE Configurando GPG para GIT$CL"
 
     # Listar claves actuales, si hubiera instaladas en el equipo
-    echo -e "$verde Las claves instaladas en el equipo son las siguientes:$amarillo"
+    echo -e "$VE Las claves instaladas en el equipo son las siguientes:$AM"
     #gpg --list-keys
     gpg --list-secret-keys --keyid-format LONG
 
     # Usar clave o crear una
-    echo -e "$verde ¿Usar una clave existente?$rojo"
+    echo -e "$VE ¿Usar una clave existente?$RO"
     read -p '  s/N  → ' input
 
     if [ $input = 's' ] || [ $input = 'S' ] || [ $input = 'y' ] || [ $input = 'Y' ]
@@ -53,11 +69,11 @@ function gpg_git() {
         clear
         gpg --list-secret-keys --keyid-format LONG
     else
-        echo -e "$verde Se creará una clave GPG única nueva:"
+        echo -e "$VE Se creará una clave GPG única nueva:"
         gpg --gen-key
     fi
 
-    echo -e "$verde Copia y pega la clave GPG en la siguiente entrada$rojo"
+    echo -e "$VE Copia y pega la clave GPG en la siguiente entrada$RO"
     read -p '  CLAVE GPG  → ' CLAVE_GPG
 
     # Establece la clave introducida para firmar
@@ -68,7 +84,7 @@ function gpg_git() {
 
 
     # Firmar commits por defecto
-    echo -e "$verde ¿Quieres firmar commits automáticamente por defecto?$amarillo"
+    echo -e "$VE ¿Quieres firmar commits automáticamente por defecto?$AM"
     read -p '  s/N  → ' input
 
     if [ $input = 's' ] || [ $input = 'S' ] || [ $input = 'y' ] || [ $input = 'Y' ]
@@ -76,9 +92,9 @@ function gpg_git() {
         git config --global commit.gpgsign true  # Firmar commit por defecto
     fi
 
-    echo -e "$verde Mostrando clave GPG:$rojo"
+    echo -e "$VE Mostrando clave GPG:$RO"
     gpg --armor --export $CLAVE_GPG
-    echo -e "$verde Asegúrate de incluir esta clave GPG en gitHuB$gris"
+    echo -e "$VE Asegúrate de incluir esta clave GPG en gitHuB$CL"
 }
 
 #Configurar el usuario GIT local
@@ -91,7 +107,7 @@ function configurar_git() {
     git config --global gui.encoding utf-8
 
     # Preguntar si se desea configurar GPG
-    echo -e "$verde ¿Quieres configurar una clave GPG para firmar?$yellow"
+    echo -e "$VE ¿Quieres configurar una clave GPG para firmar?$yellow"
     read -p 'Introduce una opción y/N → ' input
     if [ -n $input ] || [ $input = 'n' ] || [ $input = 'N' ]
     then
@@ -114,7 +130,7 @@ function configurar_github() {
     #TODO → composer config -g github-oauth.github.com
 
     # GHI → Git Hub Issues
-    echo -e "$verde Establece https a$rojo hub.protocol$gris"
+    echo -e "$VE Establece https a$RO hub.protocol$CL"
     git config --global hub.protocol https
 
     cd $DIR_ACTUAL
@@ -165,15 +181,15 @@ function crear_token() {
     clear
     #Generando TOKEN para GitHub
     xdg-open "https://github.com/settings/tokens/new?scopes=repo,gist&description=Nuevo_token" >/dev/null 2>&1
-    echo -e "$verde Vete a$rojo settings → tokens$verde para crear un token, pulsa en 'Generate token', cópialo y pégalo aquí"
-    echo -e "$verde Introduce el TOKEN de GitHub generado, pulsa$amarillo INTRO$verde si no deseas usar ninguno$gris"
+    echo -e "$VE Vete a$RO settings → tokens$VE para crear un token, pulsa en 'Generate token', cópialo y pégalo aquí"
+    echo -e "$VE Introduce el TOKEN de GitHub generado, pulsa$AM INTRO$VE si no deseas usar ninguno$CL"
     read -p " Token → " TOKEN
 
     if [ -z $TOKEN ]
     then
-        echo -e "$verde No se usará TOKEN para GitHub$gris"
+        echo -e "$VE No se usará TOKEN para GitHub$CL"
     else
-        echo -e "$verde El token →$rojo $TOKEN$verde para GitHub se está agregando$gris"
+        echo -e "$VE El token →$RO $TOKEN$VE para GitHub se está agregando$CL"
         git config --global github.token $TOKEN
 
         # Agrega el token para GHI → Git Hub Issues
@@ -182,15 +198,15 @@ function crear_token() {
 
     #Generando TOKEN para GitLab
     xdg-open "https://gitlab.com/profile/account" >/dev/null 2>&1
-    echo -e "$verde Genera un nuevo token en la URL que se abrirá en el navegador"
-    echo -e "$verde Introduce el TOKEN de GitLab generado, pulsa$amarillo INTRO$verde si no deseas usar ninguno$gris"
+    echo -e "$VE Genera un nuevo token en la URL que se abrirá en el navegador"
+    echo -e "$VE Introduce el TOKEN de GitLab generado, pulsa$AM INTRO$VE si no deseas usar ninguno$CL"
     read -p " Token → " TOKEN_GITLAB
 
     if [ -z $TOKEN_GITLAB ]
     then
-        echo -e "$verde No se usará TOKEN para GitLab$gris"
+        echo -e "$VE No se usará TOKEN para GitLab$CL"
     else
-        echo -e "$verde El token →$rojo $TOKEN_GITLAB$verde para GitLab se está agregando$gris"
+        echo -e "$VE El token →$RO $TOKEN_GITLAB$VE para GitLab se está agregando$CL"
         git config --global gitlab.token $TOKEN_GITLAB
     fi
 
@@ -199,13 +215,13 @@ function crear_token() {
 
 #Crear Alias dentro de GIT
 function crear_git_alias() {
-    echo -e "$verde Alias para el comando$rojo git lg$gris"
+    echo -e "$VE Alias para el comando$RO git lg$CL"
     git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
-    echo -e "$verde Alias para el comando$rojo git hist$gris"
+    echo -e "$VE Alias para el comando$RO git hist$CL"
     git config --global alias.hist "log --graph --date-order --date=short --pretty=format:'%C(bold blue)%h%d %C(bold red)(%cd) %C(bold yellow)%s %C(bold blue)%ce %C(reset)%C(green)%cr'"
 
-    echo -e "$verde Alias para el comando$rojo git his$gris"
+    echo -e "$VE Alias para el comando$RO git his$CL"
     git config --global alias.his "log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
 
     git config --global push.default simple
@@ -214,7 +230,7 @@ function crear_git_alias() {
 function configuracion_git() {
     cd
 
-    echo -e "$verde Configurando GIT$gris"
+    echo -e "$VE Configurando GIT$CL"
     read -p "Introduce el nombre completo del programador → " nombre_git
 
     datos_input
@@ -223,17 +239,17 @@ function configuracion_git() {
     do
         if [ -z usuario_git ] || [ -z correo_git ]
         then
-            echo -e "$verde No puede estar vacio el usuario y el correo$gris"
+            echo -e "$VE No puede estar vacio el usuario y el correo$CL"
             datos_input
         else
             break
         fi
     done
 
-    echo -e "$verde Configurando GIT local$gris"
+    echo -e "$VE Configurando GIT local$CL"
     configurar_git
 
-    echo -e "$verde Configurar conexion con GITHUB"
+    echo -e "$VE Configurar conexion con GITHUB"
     configurar_github
     configurar_gitlab
     crear_token

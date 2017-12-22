@@ -1,38 +1,45 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # -*- ENCODING: UTF-8 -*-
-#######################################
-# ###     Raúl Caro Pastorino     ### #
-## ##                             ## ##
-### # https://github.com/fryntiz/ # ###
-## ##                             ## ##
-# ###       www.fryntiz.es        ### #
-#######################################
+##
+## @author     Raúl Caro Pastorino
+## @copyright  Copyright © 2017 Raúl Caro Pastorino
+## @license    https://wwww.gnu.org/licenses/gpl.txt
+## @email      tecnico@fryntiz.es
+## @web        www.fryntiz.es
+## @github     https://github.com/fryntiz
+## @gitlab     https://gitlab.com/fryntiz
+##
+##             Guía de estilos aplicada:
+## @style      https://github.com/fryntiz/Bash_Style_Guide
 
 ############################
-##   Constantes Colores   ##
+##     INSTRUCCIONES      ##
 ############################
-amarillo="\033[1;33m"
-azul="\033[1;34m"
-blanco="\033[1;37m"
-cyan="\033[1;36m"
-gris="\033[0;37m"
-magenta="\033[1;35m"
-rojo="\033[1;31m"
-verde="\033[1;32m"
 
-#############################
-##   Variables Generales   ##
-#############################
+############################
+##     IMPORTACIONES      ##
+############################
 
-function bashit_Instalador() {
-    if [ -f ~/.bash_it/bash_it.sh ] #Comprobar si ya esta instalado
+############################
+##       CONSTANTES       ##
+############################
+
+###########################
+##       VARIABLES       ##
+###########################
+
+###########################
+##       FUNCIONES       ##
+###########################
+bashit_Instalador() {
+    if [[ -f ~/.bash_it/bash_it.sh ]] ## Comprobar si ya esta instalado
     then
-        echo -e "$verde Ya esta$rojo Bash-It$verde instalado para este usuario, omitiendo paso$gris"
-        bash ~/.bash_it/install.sh --silent 2>> /dev/null
+        echo -e "$VE Ya esta$RO Bash-It$VE instalado para este usuario, omitiendo paso$CL"
+        bash ~/.bash_it/install.sh --silent --no-modify-config 2>> /dev/null
     else
         REINTENTOS=5
 
-        echo -e "$verde Descargando Bash-It$gris"
+        echo -e "$VE Descargando Bash-It$CL"
         for (( i=1; i<=$REINTENTOS; i++ ))
         do
             rm -R ~/.bash_it 2>> /dev/null
@@ -40,12 +47,12 @@ function bashit_Instalador() {
         done
     fi
 
-    if [ -f ~/.nvm/nvm.sh ] #Comprobar si ya esta instalado
+    if [[ -f ~/.nvm/nvm.sh ]] ## Comprobar si ya esta instalado
     then
-        echo -e "$verde Ya esta$rojo nvm$verde instalado para este usuario, omitiendo paso$gris"
+        echo -e "$VE Ya esta$RO nvm$VE instalado para este usuario, omitiendo paso$CL"
     else
         REINTENTOS=5
-        echo -e "$verde Descargando nvm$gris"
+        echo -e "$VE Descargando nvm$CL"
         for (( i=1; i<=$REINTENTOS; i++ ))
         do
             rm -R ~/.nvm 2>> /dev/null
@@ -53,26 +60,26 @@ function bashit_Instalador() {
         done
     fi
 
-    if [ -f /bin/fasd ] #Comprobar si ya esta instalado
+    if [[ -f /bin/fasd ]] ## Comprobar si ya esta instalado
     then
-        echo -e "$verde Ya esta$rojo fasd$verde instalado, omitiendo paso$gris"
+        echo -e "$VE Ya esta$RO fasd$VE instalado, omitiendo paso$CL"
     else
         sudo dnf install fasd
     fi
 
-    #Instalando dependencias
-    echo -e "$verde Instalando dependencias de$rojo Bashit$gris"
+    ## Instalando dependencias
+    echo -e "$VE Instalando dependencias de$RO Bashit$CL"
     sudo dnf install powerline powerline-fonts tmux-powerline vim-powerline powerline-go
 
-    #Habilitar todos los plugins
-    #TOFIX → Este paso solo puede hacerse correctamente cuando usamos /bin/bash
+    ## Habilitar todos los plugins
+    ## TOFIX → Este paso solo puede hacerse correctamente cuando usamos /bin/bash
     plugins_habilitar="alias-completion aws base battery edit-mode-vi explain extract fasd git gif hg java javascript latex less-pretty-cat node nvm postgres projects python rails ruby sshagent ssh subversion xterm dirs nginx plenv pyenv"
 
-    if [ -n $BASH ] && [ $BASH = '/bin/bash' ]
+    if [[ -n $BASH ]] && [[ $BASH = '/bin/bash' ]]
     then
-        echo -e "$verde Habilitando todos los plugins para$rojo Bashit$gris"
+        echo -e "$VE Habilitando todos los plugins para$RO Bashit$CL"
 
-        # Incorpora archivo de bashit
+        ## Incorpora archivo de bashit
         export BASH_IT="/$HOME/.bash_it"
         export BASH_IT_THEME='powerline-multiline'
         export SCM_CHECK=true
@@ -84,10 +91,14 @@ function bashit_Instalador() {
             bash-it enable plugin $p
         done
 
-        #Asegurar que los plugins conflictivos estén deshabilitados:
-        echo -e "$verde Deshabilitando plugins no usados en$rojo Bashit$gris"
+        ## Asegurar que los plugins conflictivos estén deshabilitados:
+        echo -e "$VE Deshabilitando plugins no usados en$RO Bashit$CL"
         bash-it disable plugin chruby chruby-auto z z_autoenv visual-studio-code gh
     else
-        echo -e "$verde Para habilitar los$rojo plugins de BASH$verde ejecuta este scripts desde$rojo bash$gris"
+        echo -e "$VE Para habilitar los$RO plugins de BASH$VE ejecuta este scripts desde$RO bash$CL"
     fi
 }
+
+###########################
+##       EJECUCIÓN       ##
+###########################
