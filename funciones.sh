@@ -26,7 +26,7 @@
 ## Crea un respaldo del archivo o directorio pasado como parámetro
 ##
 crearBackup() {
-    for salvando in $* do;
+    for salvando in $(echo $*); do
         if [[ -f $salvando ]]; then
             echo "Creando Backup del archivo $salvando"
             cp "$salvando" "$WORKSCRIPT/Backups/"
@@ -54,6 +54,6 @@ opciones() {
 ##
 instalarSoftware() {
     for programa in $*; do
-        dnf install -y "$programa"
+        sudo dnf install -y "$programa"
     done
 }
