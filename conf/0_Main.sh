@@ -19,10 +19,10 @@
 ############################
 ##     IMPORTACIONES      ##
 ############################
-source "$DIR_ACTUAL/conf/1_Configuraciones_Basicas.sh"
-source "$DIR_ACTUAL/conf/2_Configuraciones_Extras.sh"
-source "$DIR_ACTUAL/conf/3_Configuraciones_Usuario.sh"
-source "$DIR_ACTUAL/conf/git.sh"
+source "$WORKSCRIPT/conf/1_Configuraciones_Basicas.sh"
+source "$WORKSCRIPT/conf/2_Configuraciones_Extras.sh"
+source "$WORKSCRIPT/conf/3_Configuraciones_Usuario.sh"
+source "$WORKSCRIPT/conf/git.sh"
 
 ############################
 ##       CONSTANTES       ##

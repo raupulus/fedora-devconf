@@ -23,12 +23,12 @@
 ############################
 ##     IMPORTACIONES      ##
 ############################
-source "$DIR_ACTUAL/apps/1_Aplicaciones_Basicas.sh"
-source "$DIR_ACTUAL/apps/2_Aplicaciones_Extras.sh"
-source "$DIR_ACTUAL/apps/3_Aplicaciones_Usuario.sh"
-source "$DIR_ACTUAL/apps/bashit.sh"
-source "$DIR_ACTUAL/apps/i3wm.sh"
-source "$DIR_ACTUAL/apps/vim.sh"
+source "$WORKSCRIPT/apps/1_Aplicaciones_Basicas.sh"
+source "$WORKSCRIPT/apps/2_Aplicaciones_Extras.sh"
+source "$WORKSCRIPT/apps/3_Aplicaciones_Usuario.sh"
+source "$WORKSCRIPT/apps/bashit.sh"
+source "$WORKSCRIPT/apps/i3wm.sh"
+source "$WORKSCRIPT/apps/vim.sh"
 
 ###########################
 ##       FUNCIONES       ##
