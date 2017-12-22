@@ -1,10 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # -*- ENCODING: UTF-8 -*-
-# Versión Modificada by |>Fryntiz<| → http://www.fryntiz.es && https://github.com/fryntiz
-# Este archivo se actualiza automáticamente desde el repositorio principal
-# Si necesitas añadir cambios sin romper las actualizaciones puedes añadirlos
-# al archivo ~/bashrc_custom que no se verá afectado ni modificado en ningún
-# momento, manteniendo a tu riesgo y cuenta su contenido.
+##
+## @author     Raúl Caro Pastorino
+## @copyright  Copyright © 2017 Raúl Caro Pastorino
+## @license    https://wwww.gnu.org/licenses/gpl.txt
+## @email      tecnico@fryntiz.es
+## @web        www.fryntiz.es
+## @github     https://github.com/fryntiz
+## @gitlab     https://gitlab.com/fryntiz
+##
+##             Guía de estilos aplicada:
+## @style      https://github.com/fryntiz/Bash_Style_Guide
+## Este archivo se actualiza automáticamente desde el repositorio principal
+## Si necesitas añadir cambios sin romper las actualizaciones puedes añadirlos
+## al archivo ~/bashrc_custom que no se verá afectado ni modificado en ningún
+## momento, manteniendo a tu riesgo y cuenta su contenido.
 
 # If not running interactively, don't do anything
 case $- in
