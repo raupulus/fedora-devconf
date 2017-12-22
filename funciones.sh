@@ -54,6 +54,6 @@ opciones() {
 ##
 instalarSoftware() {
     for programa in $*; do
-        dnf install "$programa"
+        dnf install -y "$programa"
     done
 }
