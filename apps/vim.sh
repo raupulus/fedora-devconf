@@ -35,20 +35,16 @@ vim_descargar() {
     ## Descarga e instala el Gestor de Plugins Vundle
     vundle_descargar() {
         echo -e "$VE Descargando Vundle desde Repositorios"
-        if [ ! -d ~/.vim/bundle/Vundle.vim ] # Se intenta descargar 10 veces
-        then
-            for (( i=1; i<=10; i++ ))
-            do
-                if [ $i -eq 10 ]
-                then
-                    rm -R ~/.vim/bundle/Vundle.vim 2>> /dev/null
+        if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
+            for (( i=1; i<=10; i++ )); do
+                if [[ $i -eq 10 ]]; then
+                    rm -R "$HOME/.vim/bundle/Vundle.vim" 2>> /dev/null
                     break
                 fi
-                git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-                vundle_actualizar_plugins && break
+                git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim" && break
             done
         else
-            echo -e "$VE Vundle ya está instalado$CL"
+            echo -e "$RO Vundle$VE ya está instalado$CL"
         fi
 }
 
@@ -60,11 +56,10 @@ vim_instalar() {
     echo -e "$VE Instalando$RO Vim Pluginst$CL"
     vim_plugins() {
         plugins_vim=("align closetag powerline youcompleteme xmledit autopep8 python-jedi python-indent utilsinps utl rails snippets fugitive ctrlp tlib tabular sintastic detectindent closetag align syntastic")
-        for plugin in $plugins_vim
-        do
-            echo -e "$VE Activando el plugin  → $RO $plugin $yellow"
-            vim-addon-manager install $plugin >> /dev/null 2>> /dev/null
-            vim-addon-manager enable $plugin >> /dev/null 2>> /dev/null
+        for plugin in $plugins_vim; do
+            echo -e "$VE Activando el plugin →$RO $plugin $yellow"
+            vim-addon-manager install "$plugin" >> /dev/null 2>> /dev/null
+            vim-addon-manager enable "$plugin" >> /dev/null 2>> /dev/null
         done
         echo -e "$VE Todos los plugins activados$CL"
     }
@@ -73,7 +68,7 @@ vim_instalar() {
 }
 
 vim_postconfiguracion() {
-    echo -e "$VE Generando Post-Configuraciones$RO Vim Project$CL"
+    echo -e "$VE Generando Post-Configuraciones$RO Vim$CL"
     echo | vim +PluginInstall +qall
 
     vim_colores() {
@@ -82,15 +77,13 @@ vim_postconfiguracion() {
         ## Creando archivos de colores, por defecto usara "monokai"
         echo -e "$VE Descargando colores para sintaxis$AM"
 
-        if [ ! -f "~/.vim/colors/wombat.vim" ]
-        then
-            wget http://www.vim.org/scripts/download_script.php?src_id=6657 -O ~/.vim/colors/wombat.vim
+        if [[ ! -f "$HOME/.vim/colors/wombat.vim" ]]; then
+            wget 'http://www.vim.org/scripts/download_script.php?src_id=6657' -O "$HOME/.vim/colors/wombat.vim"
         fi
 
         echo -e "$VE Descargando Tema$RO Monokai$AM"
-        if [ ! -f "~/.vim/colors/monokai1.vim" ]
-        then
-            wget https://raw.githubusercontent.com/lsdr/monokai/master/colors/monokai.vim -O ~/.vim/colors/monokai_1.vim
+        if [[ ! -f "$HOME/.vim/colors/monokai1.vim" ]]; then
+            wget 'https://raw.githubusercontent.com/lsdr/monokai/master/colors/monokai.vim' -O "$HOME/.vim/colors/monokai_1.vim"
         fi
         echo -e "$VE Se ha concluido la instalacion de temas de colores$CL"
     }
