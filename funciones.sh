@@ -58,3 +58,23 @@ instalarSoftware() {
         sudo dnf install -y "$programa"
     done
 }
+
+##
+##
+## @param  $1  String  Nombre del recurso a descargar (Añadir extensión)
+## @param  $2  String  Origen de la descarga (Desde donde descargar)
+##
+descargar() {
+    ## Comprobar que se reciben 3 parámetros
+    ## Comprobar que no son cadenas vacías
+    ## Comprobar que no son números
+
+
+    echo -e "$VE Descargando$RO $1 $CL"
+    local REINTENTOS=10
+    for (( i=1; i<=$REINTENTOS; i++ ))
+    do
+        rm $WORKSCRIPT/tmp/$1 2>> /dev/null
+        wget --show-progress "$2" -O "$WORKSCRIPT/tmp/$1" && break
+    done
+}
