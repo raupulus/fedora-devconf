@@ -54,7 +54,7 @@ crearBackup() {
 ## Muestra el texto recibido como parámetro formateado por pantalla
 ## @param  $1  String  Recibe la cadena a pintar
 ##
-instrucciones() {
+opciones() {
     echo -e "$AZ Opciones Disponibles$CL"
     echo -e "$VE $1$CL"
 }

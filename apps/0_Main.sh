@@ -30,23 +30,20 @@ source "$DIR_ACTUAL/apps/bashit.sh"
 source "$DIR_ACTUAL/apps/i3wm.sh"
 source "$DIR_ACTUAL/apps/vim.sh"
 
-############################
-##       CONSTANTES       ##
-############################
-
-###########################
-##       VARIABLES       ##
-###########################
-
 ###########################
 ##       FUNCIONES       ##
 ###########################
+menuAplicaciones() {
+    local descripcion='Menú de aplicaciones
+        1) Aplicaciones Básicas
+        2) Aplicaciones Extras
+        3) Aplicaciones de Usuario
+    '
+    opciones "$descripcion"
 
-###########################
-##       EJECUCIÓN       ##
-###########################
-## Llama al instalador de Bash-it
-bashit_Instalador
+    ## Llama al instalador de Bash-it
+    bashit_Instalador
 
-## Llama al instalador del gestor de ventanas i3wm
-i3wm_instalación
+    ## Llama al instalador del gestor de ventanas i3wm
+    i3wm_instalación
+}
