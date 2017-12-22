@@ -24,9 +24,10 @@
 ###########################
 ##
 ## Crea un respaldo del archivo o directorio pasado como parámetro
+## @param  $*  Recibe una serie de elementos a los que crearle un backup
 ##
 crearBackup() {
-    for salvando in $(echo $*); do
+    for salvando in $*; do
         if [[ -f $salvando ]]; then
             echo "Creando Backup del archivo $salvando"
             cp "$salvando" "$WORKSCRIPT/Backups/"
