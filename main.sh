@@ -21,14 +21,6 @@
 ## número asociado a esta.
 
 ############################
-##     IMPORTACIONES      ##
-############################
-source 'funciones.sh'
-source 'apps/0_Main.sh'
-source 'conf/0_Main.sh'
-source 'servers/0_Main.sh'
-
-############################
 ##       CONSTANTES       ##
 ############################
 AM="\033[1;33m"  ## Color Amarillo
@@ -41,8 +33,16 @@ RO="\033[1;31m"  ## Color Rojo
 VE="\033[1;32m"  ## Color Verde
 CL="\e[0m"       ##Limpiar colores
 
-WORKSCRIPT=$pwd  ## Directorio principal del script
+WORKSCRIPT=$PWD  ## Directorio principal del script
 USER=$(whoami)   ## Usuario que ejecuta el script
+
+############################
+##     IMPORTACIONES      ##
+############################
+source 'funciones.sh'
+source 'apps/0_Main.sh'
+source 'conf/0_Main.sh'
+source 'servers/0_Main.sh'
 
 ###########################
 ##       VARIABLES       ##

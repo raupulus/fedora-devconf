@@ -24,7 +24,7 @@ verde="\033[1;32m"
 ##   Variables Generales   ##
 #############################
 
-function bashit_Instalador() {
+bashit_Instalador() {
     if [ -f ~/.bash_it/bash_it.sh ] #Comprobar si ya esta instalado
     then
         echo -e "$verde Ya esta$rojo Bash-It$verde instalado para este usuario, omitiendo paso$gris"

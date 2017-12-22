@@ -1,4 +1,4 @@
-function i3wm_dependencias() {
+i3wm_dependencias() {
     echo "Instalando Dependencias"
     dependencias="i3 i3status dmenu i3lock xbacklight feh alsamixer nmcli mc links"
 
@@ -9,6 +9,6 @@ function i3wm_dependencias() {
     done
 }
 
-function i3wm_instalación() {
+i3wm_instalación() {
     i3wm_dependencias
 }
