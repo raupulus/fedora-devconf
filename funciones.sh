@@ -17,18 +17,6 @@
 ##     INSTRUCCIONES      ##
 ############################
 
-############################
-##     IMPORTACIONES      ##
-############################
-
-############################
-##       CONSTANTES       ##
-############################
-
-###########################
-##       VARIABLES       ##
-###########################
-
 ###########################
 ##       FUNCIONES       ##
 ###########################
@@ -59,6 +47,15 @@ opciones() {
     echo -e "$VE $1$CL"
 }
 
+##
+## Recibe uno o más parámetros con el nombre de los programas a instalar
+## @param  $*  String  Nombre de programas a instalar
+##
+instalarSoftware() {
+    for programa in $*; do
+        dnf install "$programa"
+    done
+}
 ###########################
 ##       EJECUCIÓN       ##
 ###########################
