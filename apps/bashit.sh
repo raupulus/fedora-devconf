@@ -56,20 +56,13 @@ bashit_Instalador() {
         done
     fi
 
-    if [[ -f /bin/fasd ]] ## Comprobar si ya esta instalado
-    then
-        echo -e "$VE Ya esta$RO fasd$VE instalado, omitiendo paso$CL"
-    else
-        sudo dnf install fasd
-    fi
-
     ## Instalando dependencias
     echo -e "$VE Instalando dependencias de$RO Bashit$CL"
-    sudo dnf install powerline powerline-fonts tmux-powerline vim-powerline powerline-go
+    instalarSoftware fasd powerline powerline-fonts tmux-powerline vim-powerline powerline-go
 
     ## Habilitar todos los plugins
     ## TOFIX → Este paso solo puede hacerse correctamente cuando usamos /bin/bash
-    plugins_habilitar="alias-completion aws base battery edit-mode-vi explain extract fasd git gif hg java javascript latex less-pretty-cat node nvm postgres projects python rails ruby sshagent ssh subversion xterm dirs nginx plenv pyenv"
+    plugins_habilitar='alias-completion aws base battery edit-mode-vi explain extract fasd git gif hg java javascript latex less-pretty-cat node nvm postgres projects python rails ruby sshagent ssh subversion xterm dirs nginx plenv pyenv'
 
     if [[ -n $BASH ]] && [[ $BASH = '/bin/bash' ]]; then
         echo -e "$VE Habilitando todos los plugins para$RO Bashit$CL"
@@ -82,12 +75,12 @@ bashit_Instalador() {
         source "$BASH_IT/bash_it.sh"
 
         for p in $plugins_habilitar; do
-            bash-it enable plugin $p
+            bash-it 'enable' 'plugin' "$p"
         done
 
         ## Asegurar que los plugins conflictivos estén deshabilitados:
         echo -e "$VE Deshabilitando plugins no usados en$RO Bashit$CL"
-        bash-it disable plugin chruby chruby-auto z z_autoenv visual-studio-code gh
+        bash-it 'disable' 'plugin' 'chruby' 'chruby-auto' 'z' 'z_autoenv' 'visual-studio-code' 'gh'
     else
         echo -e "$VE Para habilitar los$RO plugins de BASH$VE ejecuta este scripts desde$RO bash$CL"
     fi
