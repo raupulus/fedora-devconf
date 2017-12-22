@@ -101,7 +101,7 @@ vim_postconfiguracion() {
 ###########################
 ##       EJECUCIÓN       ##
 ###########################
-vim_instalador() {
+vim_Instalador() {
     vim_descargar
     vim_preconfiguracion
     vim_instalar

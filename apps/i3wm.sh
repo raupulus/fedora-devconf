@@ -41,8 +41,6 @@ i3wm_dependencias() {
 ###########################
 ##       EJECUCIÓN       ##
 ###########################
-
-
-i3wm_instalación() {
+i3wm_instalador() {
     i3wm_dependencias
 }
