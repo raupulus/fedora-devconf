@@ -16,6 +16,9 @@
 ############################
 ##     INSTRUCCIONES      ##
 ############################
+## Menú principal que gestiona toda la aplicación mostrando un menú
+## para seleccionar la acción que se desea tomar introduciendo el
+## número asociado a esta.
 
 ############################
 ##     IMPORTACIONES      ##
