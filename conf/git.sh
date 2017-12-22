@@ -118,7 +118,7 @@ function configurar_git() {
     #Reparar finales de linea que mete la mierda de windows CRLF to LF
     git config --global core.autocrlf input
 
-    cd $DIR_ACTUAL
+    cd $WORKSCRIPT
 }
 
 #Configura el usuario en GITHUB
@@ -133,7 +133,7 @@ function configurar_github() {
     echo -e "$VE Establece https a$RO hub.protocol$CL"
     git config --global hub.protocol https
 
-    cd $DIR_ACTUAL
+    cd $WORKSCRIPT
 }
 
 #Configurar el usuario en gitlab
@@ -141,7 +141,7 @@ function configurar_gitlab() {
     cd
     git config --global gitlab.name "$nombre_git"
     git config --global gitlab.user "$usuario_git"
-    cd $DIR_ACTUAL
+    cd $WORKSCRIPT
 }
 
 function configurar_netrc() {
@@ -210,7 +210,7 @@ function crear_token() {
         git config --global gitlab.token $TOKEN_GITLAB
     fi
 
-    cd $DIR_ACTUAL
+    cd $WORKSCRIPT
 }
 
 #Crear Alias dentro de GIT
@@ -256,5 +256,5 @@ function configuracion_git() {
     configurar_netrc
     crear_git_alias
 
-    cd $DIR_ACTUAL
+    cd $WORKSCRIPT
 }
