@@ -51,7 +51,20 @@ USER=$(whoami)   ## Usuario que ejecuta el script
 ###########################
 ##       FUNCIONES       ##
 ###########################
+menuPrincipal() {
+    local descripcion='Menú Principal
+        1) Aplicaciones
+        2) Configuraciones
+        3) Personalización
+        4) Servidores
+    '
+    opciones "$descripcion"
+
+    ## Menú de Aplicaciones
+    menuAplicaciones
+}
 
 ###########################
 ##       EJECUCIÓN       ##
 ###########################
+menuPrincipal
