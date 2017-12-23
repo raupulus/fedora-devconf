@@ -60,3 +60,18 @@ También es posible realizar todo lo anterior en una sola orden:
 Esta serie de script siguen un patrón de estilos definido en mi propia guía de estilos para bash.
 
 Dicha guía puedes consultarla en la siguiente dirección: https://github.com/fryntiz/Bash_Style_Guide
+
+## Lenguajes de programación y de marcas que se configurarán
+Principalmente la instalación del lenguaje (si procede) y la capa de configuración dentro de los editores.
+- HTML
+- CSS
+- Javascript
+- NodeJS
+- Ajax
+- PHP
+- Python 2
+- Python 3
+- Json
+- XML
+- go
+- Haskell
