@@ -36,22 +36,23 @@ i3wm_dependencias() {
 }
 
 i3wm_descargar() {
-
+    echo -e "$VE Descargando i3wm desde Repositorios"
 }
 
 i3wm_preconfiguracion() {
+    echo -e "$VE Generando Pre-Configuraciones de$RO i3wm$CL"
     enlazarHome '.i3'
 }
 
 i3wm_instalar() {
-    echo -e "$VE Instalando Dependencias$CL"
+    echo -e "$VE Instalando$RO i3wm$CL"
     local dependencias='i3 i3-ipc i3lock i3status python2-i3ipc python3-i3ipc dmenu xbacklight feh mc links'
 
     instalarSoftware "$dependencias"
 }
 
 i3wm_postconfiguracion() {
-
+    echo -e "$VE Generando Post-Configuraciones$RO i3wm$CL"
 }
 ###########################
 ##       EJECUCIÓN       ##
