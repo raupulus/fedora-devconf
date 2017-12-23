@@ -27,6 +27,11 @@
 ## @param  $*  Recibe una serie de elementos a los que crearle un backup
 ##
 crearBackup() {
+    ## Crear directorio Backups si no existiera
+    if [[ ! -d "$WORKSCRIPT/Backups" ]]; then
+        mkdir $WORKSCRIPT/Backups
+    fi
+
     for salvando in $*; do
         if [[ -f $salvando ]]; then
             echo "Creando Backup del archivo $salvando"
