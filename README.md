@@ -32,6 +32,7 @@ Este script realiza por defecto algunas tareas que pueden modificar el sistema d
 - Actualiza el script cada cierto tiempo (cd Fedora_Developer_Init && git pull origin master)
 - La configuración de programas se aplicara solo al usuario que ejecuta el script, si queremos varios usuarios se deberá ejecutar una vez con cada uno de ellos.
 - No ejecutar como **root** (no utilizar **sudo**) ya que la personalización se quedará en su directorio personal (a menos que así lo deseas, en cuyo caso es interesante) y las acciones necesarias como administrador pedirán permiso  cuando sea necesario.
+- Aunque no es extrictamente necesario se recomienda una vez ejecutado el script completo reiniciar el equipo
 
 ## Estructura
 - Contenido actualizable mediante git pull
