@@ -51,7 +51,30 @@ vim_descargar() {
 
 vim_preconfiguracion() {
     echo -e "$VE Generando Pre-Configuraciones de$RO Vim$CL"
-    crearBackup "$HOME/.vim"
+
+
+    if [[ -h "$HOME/.vim" ]]; then  ## Si es un enlace
+        rm "$HOME/.vim"
+    elif [[ -d "$HOME/.vim" ]]; then  ## Si es un directorio
+        crearBackup "$HOME/.vim" && rm "$HOME/.vim"
+    fi
+
+    if [[ -h "$HOME/.vimrc" ]]; then  ## Si es un enlace
+        rm "$HOME/.vimrc"
+    elif [[ -f "$HOME/.vimrc" ]]; then  ## Si es un directorio
+        crearBackup "$HOME/.vimrc" && rm "$HOME/.vimrc"
+    fi
+
+    if [[ -h "$HOME/.gvimrc" ]]; then  ## Si es un enlace
+        rm "$HOME/.gvimrc"
+    elif [[ -f "$HOME/.gvimrc" ]]; then  ## Si es un directorio
+        crearBackup "$HOME/.gvimrc" && rm "$HOME/.gvimrc"
+    fi
+
+    ## Crear enlace
+    ln -s "$WORKSCRIPT/conf/home/.vim" "$HOME/.vim"
+    ln -s "$WORKSCRIPT/conf/home/.vimrc" "$HOME/.vimrc"
+    ln -s "$WORKSCRIPT/conf/home/.gvimrc" "$HOME/.gvimrc"
 }
 
 vim_instalar() {
