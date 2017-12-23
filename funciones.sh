@@ -67,6 +67,7 @@ instalarSoftware() {
 ## @param  $2  String  Origen de la descarga (Desde donde descargar)
 ##
 descargar() {
+    ## TODO:
     ## Comprobar que se reciben 3 parámetros
     ## Comprobar que no son cadenas vacías
     ## Comprobar que no son números
