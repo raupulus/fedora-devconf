@@ -51,6 +51,7 @@ vim_descargar() {
 
 vim_preconfiguracion() {
     echo -e "$VE Generando Pre-Configuraciones de$RO Vim$CL"
+    crearBackup "$HOME/.vim"
 }
 
 vim_instalar() {
