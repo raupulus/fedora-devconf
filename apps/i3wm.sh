@@ -31,10 +31,6 @@
 ###########################
 ##       FUNCIONES       ##
 ###########################
-i3wm_dependencias() {
-
-}
-
 i3wm_descargar() {
     echo -e "$VE Descargando i3wm desde Repositorios"
 }
