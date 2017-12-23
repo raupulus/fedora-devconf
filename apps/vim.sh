@@ -40,22 +40,7 @@ vim_preconfiguracion() {
     enlazarHome '.vim' '.vimrc' '.gvimrc'
 
     ## Descarga e instala el Gestor de Plugins Vundle
-    vundle_descargar() {
-        echo -e "$VE Descargando Vundle desde Repositorios"
-        if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
-            for (( i=1; i<=10; i++ )); do
-                if [[ $i -eq 10 ]]; then
-                    rm -R "$HOME/.vim/bundle/Vundle.vim" 2>> /dev/null
-                    break
-                fi
-                git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim" && break
-            done
-        else
-            echo -e "$RO Vundle$VE ya está instalado$CL"
-        fi
-    }
-
-    vundle_descargar
+    descargarGIT 'Vim' 'https://github.com/VundleVim/Vundle.vim.git' "$HOME/.vim/bundle/Vundle.vim"
 }
 
 vim_instalar() {
