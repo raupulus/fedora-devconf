@@ -94,7 +94,7 @@ enlazarHome() {
         elif [[ -f "$HOME/$x" ]]; then  ## Si es un archivo
             crearBackup "$HOME/$x" && rm "$HOME/$x"
         elif [[ -d "$HOME/$x" ]]; then  ## Si es un directorio
-            crearBackup "$HOME/$x" && rm "$HOME/$x"
+            crearBackup "$HOME/$x" && rm -R "$HOME/$x"
         fi
 
         ln -s "$WORKSCRIPT/conf/home/$x" "$HOME/$x"
