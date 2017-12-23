@@ -78,3 +78,25 @@ descargar() {
         wget --show-progress "$2" -O "$WORKSCRIPT/tmp/$1" && break
     done
 }
+
+##
+## Crea un enlace por archivo pasado después de realizar una copia de seguridad ## tomando como punto de referencia el propio repositorio, ruta conf/home/
+## donde estarán situado todos los archivos para ser actualizados con
+## el repositorio.
+## @param  $*  String  Nombre del archivo o directorio dentro del home del user
+##
+enlazarHome() {
+    for x in $*; do
+        echo -e "$VE Creando enlace de$RO $x$CL"
+
+        if [[ -h "$HOME/$x" ]]; then  ## Si es un enlace
+            rm "$HOME/$x"
+        elif [[ -f "$HOME/$x" ]]; then  ## Si es un archivo
+            crearBackup "$HOME/$x" && rm "$HOME/$x"
+        elif [[ -d "$HOME/$x" ]]; then  ## Si es un directorio
+            crearBackup "$HOME/$x" && rm "$HOME/$x"
+        fi
+
+        ln -s "$WORKSCRIPT/conf/home/$x" "$HOME/$x"
+    done
+}
