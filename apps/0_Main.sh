@@ -45,5 +45,8 @@ menuAplicaciones() {
     bashit_Instalador
 
     ## Llama al instalador del gestor de ventanas i3wm
-    i3wm_instalación
+    i3wm_Instalador
+
+    ## Llama al instalador y configurador de vim
+    vim_Instalador
 }

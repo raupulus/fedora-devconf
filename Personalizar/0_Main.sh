@@ -32,7 +32,10 @@
 ###########################
 ##       FUNCIONES       ##
 ###########################
-
+menuPersonalizacion() {
+    ## Instalar fuentes
+    echo -e "$VE Menú de Personalización$CL"
+}
 ###########################
 ##       EJECUCIÓN       ##
 ###########################

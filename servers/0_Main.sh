@@ -31,7 +31,10 @@
 ###########################
 ##       FUNCIONES       ##
 ###########################
-
+menuServidores() {
+    ## Menú para gestionar servidores
+    echo -e "$VE Menú para gestionar Servidores$RO"
+}
 ###########################
 ##       EJECUCIÓN       ##
 ###########################

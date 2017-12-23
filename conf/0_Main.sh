@@ -35,12 +35,13 @@ source "$WORKSCRIPT/conf/git.sh"
 ###########################
 ##       FUNCIONES       ##
 ###########################
+menuConfiguraciones() {
+    # Llama a la configuración de GIT
+    #configuracion_git
 
+    # Llama a configurar usuario
+    configurar_Usuario
+}
 ###########################
 ##       EJECUCIÓN       ##
 ###########################
-# Llama a la configuración de GIT
-#configuracion_git
-
-# Llama a configurar usuario
-configurar_Usuario
