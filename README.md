@@ -74,9 +74,19 @@ Principalmente la instalación del lenguaje (si procede) y la capa de configurac
 - Json
 - XML
 - go
+- perl
 - Haskell
 
 ## Frameworks que se dejarán configurados
 - Laravel → Framework para PHP
 - Yii → Framework para PHP
 - Django → Framework para Python
+
+## Software que se configurará
+- Atom Editor
+- Bluefish
+- Firefox Developer Edition
+- Ninja IDE
+- VIM
+- GVIM
+- Nano
