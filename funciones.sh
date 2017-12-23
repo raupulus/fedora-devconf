@@ -104,13 +104,17 @@ descargarGIT() {
     if [[ ! -d "$3" ]]; then
         for (( i=1; i<=reintentos; i++ )); do
             if [[ $i -eq 10 ]]; then
-                rm -R "$HOME/.vim/bundle/Vundle.vim" 2>> /dev/null
+                rm -R "$3" 2>> /dev/null
                 break
             fi
             git clone "$2" "$3" && break
         done
     else
-        echo -e "$RO Vundle$VE ya está instalado$CL"
+        echo -e "$RO$1$VE ya está instalado$CL"
+        echo -e "$VE Se actualizará el repositorio existente de$RO $1$CL"
+        cd "$3"
+        git pull origin master
+        cd "$WORKSCRIPT"
     fi
 }
 ##
