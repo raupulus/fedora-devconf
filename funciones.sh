@@ -99,15 +99,17 @@ descargar() {
 ## @param  $3  String  Lugar donde guardamos el repositorio
 ##
 descargarGIT() {
-    local reintentos=0
+    local reintentos=10
     echo -e "$VE Descargando $RO$1$VE desde Repositorio$RO GIT$CL"
     if [[ ! -d "$3" ]]; then
-        for (( i=1; i<=reintentos; i++ )); do
-            if [[ $i -eq 10 ]]; then
+        for (( i=1; i<=$reintentos; i++ )); do
+            echo -e "$VE Descargando$RO $1$VE, intento$RO $i$CL"
+            if [[ $i -eq $reintentos ]]; then
                 rm -R "$3" 2>> /dev/null
                 break
             fi
             git clone "$2" "$3" && break
+            rm -R "$3" 2>> /dev/null
         done
     else
         echo -e "$RO$1$VE ya está instalado$CL"
@@ -127,7 +129,7 @@ enlazarHome() {
     for x in $*; do
         echo -e "$VE Creando enlace de$RO $x$CL"
 
-        if [[ -h "$HOME/$x" ]]; then  ## Si es un enlace
+        if [[ -h "$HOME/$x" ]]; then  #Vim# Si es un enlace
             echo -e "$VE Limpiando enlace anterior para$RO $x$CL"
             rm "$HOME/$x"
         elif [[ -f "$HOME/$x" ]] &&   ## Si es un archivo y no tiene backup
