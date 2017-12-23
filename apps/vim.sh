@@ -32,6 +32,13 @@
 ##       FUNCIONES       ##
 ###########################
 vim_descargar() {
+    echo -e "$VE Descargando componentes para instalar VIM"
+}
+
+vim_preconfiguracion() {
+    echo -e "$VE Generando Pre-Configuraciones de$RO Vim$CL"
+    enlazarHome '.vim' '.vimrc' '.gvimrc'
+
     ## Descarga e instala el Gestor de Plugins Vundle
     vundle_descargar() {
         echo -e "$VE Descargando Vundle desde Repositorios"
@@ -47,11 +54,8 @@ vim_descargar() {
             echo -e "$RO Vundle$VE ya está instalado$CL"
         fi
     }
-}
 
-vim_preconfiguracion() {
-    echo -e "$VE Generando Pre-Configuraciones de$RO Vim$CL"
-    enlazarHome '.vim' '.vimrc' '.gvimrc'
+    vundle_descargar
 }
 
 vim_instalar() {
