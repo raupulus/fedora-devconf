@@ -2,6 +2,13 @@
 ## Script en desarrollo
 ### No usar en el estado actual
 
+Instala todo el software y añade configuraciones personalizadas al sistema operativo y el usuario de forma que implementa un entorno para desarrollar aplicaciones web sin apenas intervención manual, ahorrando de esta forma mucho tiempo en preparar el sistema.
+
+Por otro lado, las configuraciones que aplico en un equipo se encuentran disponibles en otros equipos solo con actualizar el repositorio. De esta forma puedo llevar mejor control de los cambios y disfrutar de personalización en todos los equipos por igual.
+
+Probablemente haya cosas que prefieras de otra forma, para ello aún planteo un mecanismo que permita seleccionar esta serie de preferencias. Por el momento no es así y le invito a colaborar, reportar errores o abrir debate con sugerencias si lo desea.
+
+
 ## Objetivos
 - El objetivo principal de este repositorio es establecer un entorno para trabajar rápidamente con la simple ejecución de un script, incluyendo una capa de personalización para el usuario que ha ejecutado el script.
 
