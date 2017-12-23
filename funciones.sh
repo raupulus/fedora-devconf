@@ -92,6 +92,28 @@ descargar() {
 }
 
 ##
+## Recibe un nombre, el repositorio de origen y el directorio destino para
+## descargar el repositorio controlando errores y reintentando cuando falle.
+## @param  $1  String  Nombre, es más para informar y registrar log
+## @param  $2  String  Repositorio desde donde descargar
+## @param  $3  String  Lugar donde guardamos el repositorio
+##
+descargarGIT() {
+    local reintentos=0
+    echo -e "$VE Descargando $RO$1$VE desde Repositorio$RO GIT$CL"
+    if [[ ! -d "$3" ]]; then
+        for (( i=1; i<=reintentos; i++ )); do
+            if [[ $i -eq 10 ]]; then
+                rm -R "$HOME/.vim/bundle/Vundle.vim" 2>> /dev/null
+                break
+            fi
+            git clone "$2" "$3" && break
+        done
+    else
+        echo -e "$RO Vundle$VE ya está instalado$CL"
+    fi
+}
+##
 ## Crea un enlace por archivo pasado después de realizar una copia de seguridad ## tomando como punto de referencia el propio repositorio, ruta conf/home/
 ## donde estarán situado todos los archivos para ser actualizados con
 ## el repositorio.
