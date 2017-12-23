@@ -72,6 +72,11 @@ descargar() {
     ## Comprobar que no son cadenas vacías
     ## Comprobar que no son números
 
+    ## Crear directorio Temporal si no existiera  
+    if [[ ! -d "$WORKSCRIPT/tmp" ]]; then
+        mkdir $WORKSCRIPT/tmp
+    fi
+
     echo -e "$VE Descargando$RO $1 $CL"
     local REINTENTOS=10
     for (( i=1; i<=$REINTENTOS; i++ ))
