@@ -67,7 +67,7 @@ vim_instalar() {
     }
 
     ## Instalar dependencias
-    local dependencias="vim-powerline docker-vim fluxboc-vim-syntax vim-go vim-latex vim-perl-support vim-powerline vim-pysmell vim-syntastic vim-syntastic-css vim-syntastic-elixir vim-syntastic-eruby vim-syntastic-go vim-syntastic-haskell vim-syntastic-html vim-syntastic-json vim-syntastic-javascript vim-syntastic-less vim-syntastic-lex vim-syntastic-perl vim-syntastic-php vim-syntastic-python vim-syntastic-ruby vim-syntastic-sh vim-syntastic-tex vim-syntastic-vim vim-syntastic-xhtml vim-syntastic-xml vim-syntastic-zsh vim-syntastic-vimoutliner"
+    local dependencias="vim-powerline docker-vim fluxboc-vim-syntax vim-go vim-latex vim-perl-support vim-powerline vim-pysmell vim-syntastic vim-syntastic-css vim-syntastic-elixir vim-syntastic-eruby vim-syntastic-go vim-syntastic-haskell vim-syntastic-html vim-syntastic-json vim-syntastic-javascript vim-syntastic-less vim-syntastic-lex vim-syntastic-perl vim-syntastic-php vim-syntastic-python vim-syntastic-ruby vim-syntastic-sh vim-syntastic-tex vim-syntastic-vim vim-syntastic-xhtml vim-syntastic-xml vim-syntastic-zsh vim-vimoutliner"
 
     instalarSoftware "$dependencias"
 
