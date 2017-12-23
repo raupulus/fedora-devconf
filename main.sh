@@ -47,21 +47,46 @@ source 'servers/0_Main.sh'
 ###########################
 ##       VARIABLES       ##
 ###########################
+errores=()
 
 ###########################
 ##       FUNCIONES       ##
 ###########################
 menuPrincipal() {
-    local descripcion='Menú Principal
-        1) Aplicaciones
-        2) Configuraciones
-        3) Personalización
-        4) Servidores
-    '
-    opciones "$descripcion"
+    while true :; do
+        clear
 
-    ## Menú de Aplicaciones
-    menuAplicaciones
+        local descripcion='Menú Principal
+            1) Aplicaciones
+            2) Configuraciones
+            3) Personalización
+            4) Servidores
+        '
+        opciones "$descripcion"
+
+        echo -e "$RO"
+        read -p "    Acción → " entrada
+        echo -e "$CL"
+
+        case $entrada in
+
+            1) menuAplicaciones;;     ## Menú de Aplicaciones
+            2) menuConfiguraciones;;  ## Menú de Configuraciones
+            3) menuPersonalizacion;;  ## Menú de Personalización
+            4) menuServidores;;       ## Menú de Aplicaciones
+
+            0)  ## SALIR
+                clear
+                echo -e "$RO Se sale del menú$CL"
+                echo ''
+                exit 0;;
+
+            *)  ## Acción ante entrada no válida
+                clear
+                echo ""
+                echo -e "                      $RO ATENCIÓN: Elección no válida$CL";;
+        esac
+    done
 }
 
 ###########################
