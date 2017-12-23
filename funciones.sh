@@ -60,7 +60,9 @@ instalarSoftware() {
 }
 
 ##
-##
+## Descarga desde el lugar pasado como segundo parámetro y lo guarda con el
+## nombre del primer parámetro dentro del directorio temporal "tmp" de este
+## repositorio, quedando excluido del mismo control de versiones.
 ## @param  $1  String  Nombre del recurso a descargar (Añadir extensión)
 ## @param  $2  String  Origen de la descarga (Desde donde descargar)
 ##
@@ -68,7 +70,6 @@ descargar() {
     ## Comprobar que se reciben 3 parámetros
     ## Comprobar que no son cadenas vacías
     ## Comprobar que no son números
-
 
     echo -e "$VE Descargando$RO $1 $CL"
     local REINTENTOS=10
