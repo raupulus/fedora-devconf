@@ -69,7 +69,6 @@ descargar() {
     ## Comprobar que no son cadenas vacías
     ## Comprobar que no son números
 
-
     echo -e "$VE Descargando$RO $1 $CL"
     local REINTENTOS=10
     for (( i=1; i<=$REINTENTOS; i++ ))

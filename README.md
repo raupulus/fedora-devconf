@@ -48,3 +48,8 @@ Modo de instalación tomando el directorio "home" del usuario actual:
     ## Iniciar desde el script principal
     ./main.sh
 ```
+
+También es posible realizar todo lo anterior en una sola orden:
+```bash
+    git clone https://github.com/fryntiz/Fedora_Developer_Init "$HOME/Fedora_Developer_Init" && cd "$HOME/Fedora_Developer_Init" && ./main.sh
+```
