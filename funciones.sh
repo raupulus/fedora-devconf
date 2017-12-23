@@ -38,7 +38,7 @@ crearBackup() {
             cp "$salvando" "$WORKSCRIPT/Backups/"
         elif [[ -d $salvando ]]; then
             echo "Creando Backup del directorio $salvando"
-            cp "$salvando" "$WORKSCRIPT/Backups/"
+            cp -R "$salvando" "$WORKSCRIPT/Backups/"
         else
             echo "No se encuentra $salvando"
         fi
