@@ -90,3 +90,8 @@ Principalmente la instalación del lenguaje (si procede) y la capa de configurac
 - VIM
 - GVIM
 - Nano
+- Git
+- bash → bash-it
+- zsh → OhMyZsh
+- DBeaver
+- GitKraken
