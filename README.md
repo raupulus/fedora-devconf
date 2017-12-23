@@ -53,3 +53,8 @@ También es posible realizar todo lo anterior en una sola orden:
 ```bash
     git clone https://github.com/fryntiz/Fedora_Developer_Init "$HOME/Fedora_Developer_Init" && cd "$HOME/Fedora_Developer_Init" && ./main.sh
 ```
+
+## Guía de estilos
+Esta serie de script siguen un patrón de estilos definido en mi propia guía de estilos para bash.
+
+Dicha guía puedes consultarla en la siguiente dirección: https://github.com/fryntiz/Bash_Style_Guide
