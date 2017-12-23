@@ -61,6 +61,7 @@ menuPrincipal() {
             2) Configuraciones
             3) Personalización
             4) Servidores
+            0) Salir
         '
         opciones "$descripcion"
 
