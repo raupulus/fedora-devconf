@@ -26,7 +26,11 @@ Este script realiza por defecto algunas tareas que pueden modificar el sistema d
 ## Exclusiones
 - No se establece ninguna configuración para hardware como tarjetas gráficas.
 
+## Tener en cuenta
+- Este repositorio forma parte de la configuración para el usuario una vez instalado, por tanto tendrá que permanecer siempre en el equipo ya que si lo borras se perderá. No lo borres cuando termines de instalar.
+- Se aplicarán instalaciones de programas autoaceptadas (Si a todo)
+- Actualiza el script cada cierto tiempo (cd Fedora_Developer_Init && git pull origin master)
+
 ## Estructura
--
 - Contenido actualizable mediante git pull
 - Cada archivo enlaza a otro para que el usuario lo personalice
