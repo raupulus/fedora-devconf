@@ -2,6 +2,8 @@
 ## Script en desarrollo
 ### No usar en el estado actual
 
+![Previsualización Fedora_Developer_Init](/preview.png)
+
 Instala todo el software y añade configuraciones personalizadas al sistema operativo y el usuario de forma que implementa un entorno para desarrollar aplicaciones web sin apenas intervención manual, ahorrando de esta forma mucho tiempo en preparar el sistema.
 
 Por otro lado, las configuraciones que aplico en un equipo se encuentran disponibles en otros equipos solo con actualizar el repositorio. De esta forma puedo llevar mejor control de los cambios y disfrutar de personalización en todos los equipos por igual.
