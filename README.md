@@ -75,3 +75,8 @@ Principalmente la instalación del lenguaje (si procede) y la capa de configurac
 - XML
 - go
 - Haskell
+
+## Frameworks que se dejarán configurados
+- Laravel → Framework para PHP
+- Yii → Framework para PHP
+- Django → Framework para Python
