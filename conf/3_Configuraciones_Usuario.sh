@@ -33,14 +33,7 @@
 ###########################
 function home() {
     ## Mover al directorio Backups el archivo .bashrc
-    if [[ -h "$HOME/.bashrc" ]]; then  ## Si es un enlace
-        rm "$HOME/.bashrc"
-    elif [[ -f "$HOME/.bashrc" ]]; then  ## Si es un archivo
-        crearBackup "$HOME/.bashrc" && rm "$HOME/.bashrc"
-    fi
-
-    ## Crear enlace
-    ln -s "$WORKSCRIPT/conf/home/bashrc" "$HOME/.bashrc"
+    enlazarHome '.bashrc'
 }
 
 function configurar_Usuario() {

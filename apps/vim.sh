@@ -32,37 +32,33 @@
 ##       FUNCIONES       ##
 ###########################
 vim_descargar() {
-    ## Descarga e instala el Gestor de Plugins Vundle
-    vundle_descargar() {
-        echo -e "$VE Descargando Vundle desde Repositorios"
-        if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
-            for (( i=1; i<=10; i++ )); do
-                if [[ $i -eq 10 ]]; then
-                    rm -R "$HOME/.vim/bundle/Vundle.vim" 2>> /dev/null
-                    break
-                fi
-                git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim" && break
-            done
-        else
-            echo -e "$RO Vundle$VE ya está instalado$CL"
-        fi
+    echo -e "$VE Descargando componentes para instalar VIM"
 }
 
 vim_preconfiguracion() {
     echo -e "$VE Generando Pre-Configuraciones de$RO Vim$CL"
+    enlazarHome '.vim' '.vimrc' '.gvimrc'
+
+    ## Descarga e instala el Gestor de Plugins Vundle
+    descargarGIT 'Bundle' 'https://github.com/VundleVim/Vundle.vim.git' "$HOME/.vim/bundle/Vundle.vim"
 }
 
 vim_instalar() {
-    echo -e "$VE Instalando$RO Vim Pluginst$CL"
+    echo -e "$VE Instalando$RO Vim Plugins$CL"
     vim_plugins() {
-        plugins_vim=("align closetag powerline youcompleteme xmledit autopep8 python-jedi python-indent utilsinps utl rails snippets fugitive ctrlp tlib tabular sintastic detectindent closetag align syntastic")
+        plugins_vim="align closetag powerline youcompleteme xmledit autopep8 python-jedi python-indent utilsinps utl rails snippets fugitive ctrlp tlib tabular sintastic detectindent closetag align syntastic"
         for plugin in $plugins_vim; do
-            echo -e "$VE Activando el plugin →$RO $plugin $yellow"
+            echo -e "$VE Activando el plugin →$RO $plugin $AM"
             vim-addon-manager install "$plugin" >> /dev/null 2>> /dev/null
             vim-addon-manager enable "$plugin" >> /dev/null 2>> /dev/null
         done
         echo -e "$VE Todos los plugins activados$CL"
     }
+
+    ## Instalar dependencias
+    local dependencias="vim-powerline docker-vim fluxbox-vim-syntax vim-go vim-latex vim-perl-support vim-powerline vim-pysmell vim-syntastic vim-syntastic-css vim-syntastic-elixir vim-syntastic-eruby vim-syntastic-go vim-syntastic-haskell vim-syntastic-html vim-syntastic-json vim-syntastic-javascript vim-syntastic-less vim-syntastic-lex vim-syntastic-perl vim-syntastic-php vim-syntastic-python vim-syntastic-ruby vim-syntastic-sh vim-syntastic-tex vim-syntastic-vim vim-syntastic-xhtml vim-syntastic-xml vim-syntastic-zsh vim-vimoutliner perl-Text-VimColor"
+
+    instalarSoftware "$dependencias"
 
     vim_plugins
 }

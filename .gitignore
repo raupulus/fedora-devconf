@@ -4,3 +4,9 @@ Backups/*
 logs/*
 tmp/*
 /tmp/*
+/conf/home/.vim/colors/monokai_1.vim
+conf/home/.vim/colors/monokai_1.vim
+/conf/home/.vim/colors/wombat.vim
+conf/home/.vim/colors/wombat.vim
+/conf/home/.vim/bundle/*
+conf/home/.vim/bundle/*
