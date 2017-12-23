@@ -34,3 +34,17 @@ Este script realiza por defecto algunas tareas que pueden modificar el sistema d
 ## Estructura
 - Contenido actualizable mediante git pull
 - Cada archivo enlaza a otro para que el usuario lo personalice
+
+## Instalación
+Asegurate de estar utilizando bash para ejecutar este script, en caso contrario entra en **bash** pues este es el intérprete para el que se ha programado.
+Modo de instalación tomando el directorio "home" del usuario actual:
+```bash
+    ## Clonar repositorio en nuestro directorio principal de usuario
+    git clone https://github.com/fryntiz/Fedora_Developer_Init "$HOME/Fedora_Developer_Init"
+
+    ## Entrar al repositorio descargado
+    cd "$HOME/Fedora_Developer_Init"
+
+    ## Iniciar desde el script principal
+    ./main.sh
+```
