@@ -10,3 +10,5 @@ conf/home/.vim/colors/monokai_1.vim
 conf/home/.vim/colors/wombat.vim
 /conf/home/.vim/bundle/*
 conf/home/.vim/bundle/*
+/conf/home/.vim/sessions/*
+conf/home/.vim/sessions/*
