@@ -31,7 +31,23 @@
 ###########################
 ##       FUNCIONES       ##
 ###########################
+fuentes_repositorios() {
+    instalarSoftware "linux-libertine-fonts-commons" "anca-coder-fonts-common"
+}
 
+fuentes_externas() {
+    for f in "fonts/*"; do
+        if [[ -d ./fonts/$f ]]; then
+            echo -e "$VE Instalando fuente$MA →$RO $f$CL"
+            sudo cp -R ./fonts/$f/ /usr/local/share/fonts/
+        fi
+    done
+}
 ###########################
 ##       EJECUCIÓN       ##
 ###########################
+fuentes_instalador() {
+    echo -e "$VE Añadiendo fuentes Tipográficas al sistema$CL"
+    fuentes_repositorios
+    fuentes_externas
+}
