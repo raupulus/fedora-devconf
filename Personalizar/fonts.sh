@@ -36,11 +36,10 @@ fuentes_repositorios() {
 }
 
 fuentes_externas() {
-    for f in "fonts/*"; do
-        if [[ -d ./fonts/$f ]]; then
+    for f in $WORKSCRIPT/Personalizar/fonts/*; do
+        echo $f
             echo -e "$VE Instalando fuente$MA →$RO $f$CL"
-            sudo cp -R "./fonts/$f/" "/usr/local/share/fonts/"
-        fi
+            sudo cp -r "$f" '/usr/share/fonts/'
     done
 }
 ###########################
