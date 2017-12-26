@@ -32,7 +32,7 @@
 ##       FUNCIONES       ##
 ###########################
 fuentes_repositorios() {
-    instalarSoftware "linux-libertine-fonts-commons" "anca-coder-fonts-common"
+    instalarSoftware "linux-libertine-fonts-common" "anka-coder-fonts-common"
 }
 
 fuentes_externas() {
