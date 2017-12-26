@@ -84,8 +84,7 @@ descargar() {
 
     echo -e "$VE Descargando$RO $1 $CL"
     local REINTENTOS=10
-    for (( i=1; i<=$REINTENTOS; i++ ))
-    do
+    for (( i=1; i<=$REINTENTOS; i++ )); do
         rm $WORKSCRIPT/tmp/$1 2>> /dev/null
         wget --show-progress "$2" -O "$WORKSCRIPT/tmp/$1" && break
     done
@@ -129,7 +128,7 @@ enlazarHome() {
     for x in $*; do
         echo -e "$VE Creando enlace de$RO $x$CL"
 
-        if [[ -h "$HOME/$x" ]]; then  #Vim# Si es un enlace
+        if [[ -h "$HOME/$x" ]]; then  ## Si es un enlace
             echo -e "$VE Limpiando enlace anterior para$RO $x$CL"
             rm "$HOME/$x"
         elif [[ -f "$HOME/$x" ]] &&   ## Si es un archivo y no tiene backup
