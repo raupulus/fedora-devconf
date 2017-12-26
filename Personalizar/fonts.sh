@@ -39,7 +39,7 @@ fuentes_externas() {
     for f in "fonts/*"; do
         if [[ -d ./fonts/$f ]]; then
             echo -e "$VE Instalando fuente$MA →$RO $f$CL"
-            sudo cp -R ./fonts/$f/ /usr/local/share/fonts/
+            sudo cp -R "./fonts/$f/" "/usr/local/share/fonts/"
         fi
     done
 }
