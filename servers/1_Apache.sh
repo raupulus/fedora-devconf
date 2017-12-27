@@ -46,11 +46,11 @@ apache2_preconfiguracion() {
 
         ## Copia todo el contenido WEB a /var/www
         echo -e "$VE Copiando contenido dentro de /var/www$CL"
-        sudo cp -R ./Apache2/www/* /var/www/
+        sudo cp -R $WORKSCRIPT/servers/Apache2/www/* /var/www/
 
         ## Copia todo el contenido de configuración a /etc/apache2
         echo -e "$VE Copiando archivos de configuración dentro de /etc/apache2$CL"
-        sudo cp -R ./Apache2/etc/apache2/* /etc/apache2/
+        sudo cp -R $WORKSCRIPT/servers/Apache2/etc/apache2/* /etc/apache2/
 
         ## Crear archivo de usuario con permisos para directorios restringidos
         echo -e "$VE Creando usuario con permisos en apache$CL"
@@ -150,12 +150,6 @@ apache2_preconfiguracion() {
 apache2_instalar() {
     echo -e "$VE Instalando$RO Apache2$CL"
     instalarSoftware 'httpd' 'httpd-filesystem' 'httpd-tools' 'system-config-httpd' 'web-assets-httpd'
-
-
-    #sudo apt install -y apache2 >> /dev/null 2>> /dev/null
-    #sudo apt install -y libapache2-mod-perl2 >> /dev/null 2>> /dev/null
-    #sudo apt install -y libapache2-mod-php >> /dev/null 2>> /dev/null
-    #sudo apt install -y libapache2-mod-python >> /dev/null 2>> /dev/null
 }
 
 apache2_postconfiguracion() {
@@ -177,7 +171,7 @@ apache2_postconfiguracion() {
 ##       EJECUCIÓN       ##
 ###########################
 apache2_Instalador() {
-    apache2_preconfiguracion
     apache2_instalar
+    apache2_preconfiguracion
     apache2_postconfiguracion
 }
