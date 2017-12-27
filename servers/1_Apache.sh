@@ -87,22 +87,7 @@
         # Deshabilita Sitios Virtuales (VirtualHost)
         sudo a2dissite 000-default.conf
 
-        function activar_hosts() {
-            echo -e "$verde Añadiendo Sitios Virtuales$amarillo"
-            echo "127.0.0.1 privado" | sudo tee -a /etc/hosts
-            echo "127.0.0.1 privado.local" | sudo tee -a /etc/hosts
-            echo "127.0.0.1 p.local" | sudo tee -a /etc/hosts
-            echo "127.0.0.1 publico" | sudo tee -a /etc/hosts
-            echo "127.0.0.1 publico.local" | sudo tee -a /etc/hosts
-        }
 
-        read -p " ¿Quieres añadir sitios virtuales a /etc/hosts? s/N → " input
-        if [ $input = 's' ] || [ $input = 'S' ]
-        then
-            activar_hosts
-        else
-            echo -e "$verde No se añade nada a /etc/hosts"
-        fi
     }
 
 
@@ -163,6 +148,25 @@ apache2_preconfiguracion() {
         generar_www
     else
         echo -e "$VE No se genera la estructura predefinida y automática$CL"
+    fi
+
+
+
+
+    activar_hosts() {
+        echo -e "$VE Añadiendo Sitios Virtuales$AM"
+        echo "127.0.0.1 privado" | sudo tee -a /etc/hosts
+        echo "127.0.0.1 privado.local" | sudo tee -a /etc/hosts
+        echo "127.0.0.1 p.local" | sudo tee -a /etc/hosts
+        echo "127.0.0.1 publico" | sudo tee -a /etc/hosts
+        echo "127.0.0.1 publico.local" | sudo tee -a /etc/hosts
+    }
+
+    read -p " ¿Quieres añadir sitios virtuales a /etc/hosts? s/N → " input
+    if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
+        activar_hosts
+    else
+        echo -e "$verde No se añade nada a /etc/hosts"
     fi
 }
 
