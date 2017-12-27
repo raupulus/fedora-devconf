@@ -39,35 +39,7 @@
 
 
 
-        # Generar enlaces (desde ~/web a /var/www)
-        function enlaces() {
-            clear
-            echo -e "$verde Puedes generar un enlace en tu home ~/web hacia /var/www/html"
-            read -p " ¿Quieres generar el enlace? s/N → " input
-            if [ $input = 's' ] || [ $input = 'S' ]
-            then
-                sudo ln -s /var/www/html/ /home/$mi_usuario/web
-                sudo chown -R $mi_usuario:www-data /home/$mi_usuario/web
-            else
-                echo -e "$verde No se crea enlace desde ~/web a /var/www/html"
-            fi
 
-            clear
-            echo -e "$verde Puedes crear un directorio para repositorios GIT en tu directorio personal"
-            echo -e "$verde Una vez creado se añadirá un enlace al servidor web"
-            echo -e "$verde Este será desde el servidor /var/www/html/Publico/GIT a ~/GIT$rojo"
-            read -p " ¿Quieres crear el directorio y generar el enlace? s/N → " input
-            if [ $input = 's' ] || [ $input = 'S' ]
-            then
-                mkdir ~/GIT 2>> /dev/null && echo -e "$verde Se ha creado el directorio ~/GIT" || echo -e "$verde No se ha creado el directorio ~/GIT"
-                sudo ln -s /home/$mi_usuario/GIT /var/www/html/Publico/GIT
-                sudo chown -R $mi_usuario:www-data /home/$mi_usuario/GIT
-            else
-                echo -e "$verde No se crea enlaces ni directorio ~/GIT"
-            fi
-        }
-
-        enlaces
 
         # Cambia los permisos
         echo -e "$verde Asignando permisos"
@@ -150,7 +122,33 @@ apache2_preconfiguracion() {
         echo -e "$VE No se genera la estructura predefinida y automática$CL"
     fi
 
+    # Generar enlaces (desde ~/web a /var/www)
+    function enlaces() {
+        clear
+        echo -e "$VE Puedes generar un enlace en tu home ~/web hacia /var/www/html"
+        read -p " ¿Quieres generar el enlace? s/N → " input
+        if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
+            sudo ln -s '/var/www/html/' "/home/$mi_usuario/web"
+            sudo chown -R "$USER:www-data" "/home/$USER/web"
+        else
+            echo -e "$VE No se crea enlace desde ~/web a /var/www/html$CL"
+        fi
 
+        clear
+        echo -e "$VE Puedes crear un directorio para repositorios GIT en tu directorio personal"
+        echo -e "$VE Una vez creado se añadirá un enlace al servidor web"
+        echo -e "$VE Este será desde el servidor /var/www/html/Publico/GIT a ~/GIT$RO"
+        read -p " ¿Quieres crear el directorio y generar el enlace? s/N → " input
+        if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
+            mkdir ~/GIT 2>> /dev/null && echo -e "$VE Se ha creado el directorio ~/GIT" || echo -e "$VE No se ha creado el directorio ~/GIT"
+            sudo ln -s /home/$USER/GIT /var/www/html/Publico/GIT
+            sudo chown -R $USER:www-data /home/$USER/GIT
+        else
+            echo -e "$VE No se crea enlaces ni directorio ~/GIT$CL"
+        fi
+    }
+
+    enlaces
 
 
     activar_hosts() {
