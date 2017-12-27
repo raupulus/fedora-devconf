@@ -33,13 +33,15 @@
 ###########################
 apache2_preconfiguracion() {
     echo -e "$VE Generando Pre-Configuraciones de$RO Apache 2$CL"
+    sudo groupadd www-data 2>> /dev/null
+
     generar_www() {
         ## Borrar contenido de /var/www
-        sudo systemctl stop apache2
+        sudo systemctl stop apache2 2>> /dev/null
         echo -e "$VE Cuidado, esto puede$RO BORRAR$VE algo valioso$CL"
         read -p " ¿Quieres borrar todo el directorio /var/www/? s/N → " input
         if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
-            sudo rm -R /var/www/*
+            sudo rm -R /var/www/* 2>> /dev/null
         else
             echo -e "$VE No se borra /var/www$CL"
         fi
@@ -50,7 +52,7 @@ apache2_preconfiguracion() {
 
         ## Copia todo el contenido de configuración a /etc/apache2
         echo -e "$VE Copiando archivos de configuración dentro de /etc/apache2$CL"
-        sudo cp -R $WORKSCRIPT/servers/Apache2/etc/apache2/* /etc/apache2/
+        sudo cp -R $WORKSCRIPT/servers/Apache2/etc/apache2/* /etc/httpd/
 
         ## Crear archivo de usuario con permisos para directorios restringidos
         echo -e "$VE Creando usuario con permisos en apache$CL"
@@ -64,7 +66,7 @@ apache2_preconfiguracion() {
         ## Cambia el dueño
         echo -e "$VE Asignando dueños$CL"
         sudo chown www-data:www-data -R /var/www
-        sudo chown root:root /etc/apache2/ports.conf
+        sudo chown root:root /etc/httpd/ports.conf
 
         ## Agrega el usuario al grupo www-data
         echo -e "$VE Añadiendo el usuario al grupo$RO www-data$CL"
@@ -133,8 +135,8 @@ apache2_preconfiguracion() {
         sudo chmod 700 /var/www/html/Privado/.htaccess
         sudo chmod 700 /var/www/html/Publico/.htaccess
         sudo chmod 700 /var/www/html/Privado/CMS/.htaccess
-        sudo chmod 755 /etc/apache2/ports.conf /etc/apache2/
-        sudo chmod 755 -R /etc/apache2/sites-available /etc/apache2/sites-enabled
+        sudo chmod 755 /etc/httpd/ports.conf /etc/httpd/
+        sudo chmod 755 -R /etc/httpd/sites-available /etc/httpd/sites-enabled
     }
     permisos
 
@@ -163,9 +165,16 @@ apache2_postconfiguracion() {
     echo -e "$verde Desactivando módulos$red"
     #sudo a2dismod php5
 
+    ## Añadir excepciones al cortafuegos
+    sudo firewall-cmd --add-service={http,https} --permanent
+    sudo firewall-cmd --reload
+
+    ## Habilitar inicio del servidor al arrancar
+    sudo systemctl enable httpd.service
+
     ## Reiniciar servidor Apache para aplicar configuración
-    sudo systemctl start apache2
-    sudo systemctl restart apache2
+    sudo systemctl start httpd.service
+    sudo systemctl restart httpd.service
 }
 ###########################
 ##       EJECUCIÓN       ##
