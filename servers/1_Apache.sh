@@ -140,13 +140,18 @@ apache2_preconfiguracion() {
     }
     permisos
 
+
+
+
+
+    ## TOFIX → Generar los hosts virtuales
     ## Habilita Sitios Virtuales (VirtualHost)
-    sudo a2ensite default.conf
-    sudo a2ensite publico.conf
-    sudo a2ensite privado.conf
+    #sudo a2ensite default.conf
+    #sudo a2ensite publico.conf
+    #sudo a2ensite privado.conf
 
     ## Deshabilita Sitios Virtuales (VirtualHost)
-    sudo a2dissite 000-default.conf
+    #sudo a2dissite 000-default.conf
 }
 
 apache2_instalar() {
