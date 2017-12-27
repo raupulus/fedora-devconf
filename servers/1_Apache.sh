@@ -138,12 +138,12 @@ apache2_preconfiguracion() {
     }
     permisos
 
-    # Habilita Sitios Virtuales (VirtualHost)
+    ## Habilita Sitios Virtuales (VirtualHost)
     sudo a2ensite default.conf
     sudo a2ensite publico.conf
     sudo a2ensite privado.conf
 
-    # Deshabilita Sitios Virtuales (VirtualHost)
+    ## Deshabilita Sitios Virtuales (VirtualHost)
     sudo a2dissite 000-default.conf
 }
 
