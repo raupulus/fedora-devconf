@@ -31,49 +31,8 @@
 ###########################
 ##       FUNCIONES       ##
 ###########################
-
-
-    function personalizar_apache() {
-
-
-
-
-
-
-
-        # Cambia los permisos
-        echo -e "$verde Asignando permisos"
-        sudo chmod 775 -R /var/www/*
-        sudo chmod 700 /var/www/.htpasswd
-        sudo chmod 700 /var/www/html/Privado/.htaccess
-        sudo chmod 700 /var/www/html/Publico/.htaccess
-        sudo chmod 700 /var/www/html/Privado/CMS/.htaccess
-        sudo chmod 755 /etc/apache2/ports.conf /etc/apache2/
-        sudo chmod 755 -R /etc/apache2/sites-available /etc/apache2/sites-enabled
-
-        # Habilita Sitios Virtuales (VirtualHost)
-        sudo a2ensite default.conf
-        sudo a2ensite publico.conf
-        sudo a2ensite privado.conf
-
-        # Deshabilita Sitios Virtuales (VirtualHost)
-        sudo a2dissite 000-default.conf
-
-
-    }
-
-
-
-
-
-
-
-
-
-
 apache2_preconfiguracion() {
     echo -e "$VE Generando Pre-Configuraciones de$RO Apache 2$CL"
-
     generar_www() {
         ## Borrar contenido de /var/www
         sudo systemctl stop apache2
@@ -150,7 +109,6 @@ apache2_preconfiguracion() {
 
     enlaces
 
-
     activar_hosts() {
         echo -e "$VE Añadiendo Sitios Virtuales$AM"
         echo "127.0.0.1 privado" | sudo tee -a /etc/hosts
@@ -166,6 +124,27 @@ apache2_preconfiguracion() {
     else
         echo -e "$verde No se añade nada a /etc/hosts"
     fi
+
+    ## Cambia los permisos
+    permisos() {
+        echo -e "$verde Asignando permisos"
+        sudo chmod 775 -R /var/www/*
+        sudo chmod 700 /var/www/.htpasswd
+        sudo chmod 700 /var/www/html/Privado/.htaccess
+        sudo chmod 700 /var/www/html/Publico/.htaccess
+        sudo chmod 700 /var/www/html/Privado/CMS/.htaccess
+        sudo chmod 755 /etc/apache2/ports.conf /etc/apache2/
+        sudo chmod 755 -R /etc/apache2/sites-available /etc/apache2/sites-enabled
+    }
+    permisos
+
+    # Habilita Sitios Virtuales (VirtualHost)
+    sudo a2ensite default.conf
+    sudo a2ensite publico.conf
+    sudo a2ensite privado.conf
+
+    # Deshabilita Sitios Virtuales (VirtualHost)
+    sudo a2dissite 000-default.conf
 }
 
 apache2_instalar() {
