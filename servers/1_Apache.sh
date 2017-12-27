@@ -31,28 +31,9 @@
 ###########################
 ##       FUNCIONES       ##
 ###########################
-function server_apache() {
 
-    function instalar_apache() {
-        echo -e "$verde Instalando$rojo Apache2$gris"
-        sudo apt install -y apache2 >> /dev/null 2>> /dev/null
-        sudo apt install -y libapache2-mod-perl2 >> /dev/null 2>> /dev/null
-        sudo apt install -y libapache2-mod-php >> /dev/null 2>> /dev/null
-        sudo apt install -y libapache2-mod-python >> /dev/null 2>> /dev/null
-    }
-
-    function configurar_apache() {
-        echo -e "$verde Preparando configuracion de$rojo Apache2$gris"
-
-        echo -e "$verde Activando módulos$red"
-        sudo a2enmod rewrite
-
-        echo -e "$verde Desactivando módulos$red"
-        sudo a2dismod php5
-    }
 
     function personalizar_apache() {
-        clear
         echo -e "$verde Personalizando$rojo Apache2$gris"
         function generar_www() {
             mi_usuario=`whoami`
@@ -173,18 +154,50 @@ function server_apache() {
         fi
     }
 
-    instalar_apache
-    configurar_apache
-    personalizar_apache
 
-    # Reiniciar servidor Apache para aplicar configuración
+
+
+
+
+
+
+
+
+apache2_preconfiguracion() {
+    echo -e "$VE Generando Pre-Configuraciones de$RO Apache 2$CL"
+}
+
+apache2_instalar() {
+    echo -e "$VE Instalando$RO Apache2$CL"
+    instalarSoftware 'httpd' 'httpd-filesystem' 'httpd-tools' 'system-config-httpd' 'web-assets-httpd'
+
+
+    #sudo apt install -y apache2 >> /dev/null 2>> /dev/null
+    #sudo apt install -y libapache2-mod-perl2 >> /dev/null 2>> /dev/null
+    #sudo apt install -y libapache2-mod-php >> /dev/null 2>> /dev/null
+    #sudo apt install -y libapache2-mod-python >> /dev/null 2>> /dev/null
+}
+
+apache2_postconfiguracion() {
+    echo -e "$VE Generando Post-Configuraciones$RO Apache2$CL"
+
+    ## Activar Módulos
+    echo -e "$verde Activando módulos$red"
+    #sudo a2enmod rewrite
+
+    ## Desactivar Módulos
+    echo -e "$verde Desactivando módulos$red"
+    #sudo a2dismod php5
+
+    ## Reiniciar servidor Apache para aplicar configuración
     sudo systemctl start apache2
     sudo systemctl restart apache2
 }
-
 ###########################
 ##       EJECUCIÓN       ##
 ###########################
 apache2_Instalador() {
-
+    apache2_preconfiguracion
+    apache2_instalar
+    apache2_postconfiguracion
 }
