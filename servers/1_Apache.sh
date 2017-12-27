@@ -34,59 +34,10 @@
 
 
     function personalizar_apache() {
-        echo -e "$verde Personalizando$rojo Apache2$gris"
-        function generar_www() {
-            mi_usuario=`whoami`
 
-            # Borrar contenido de /var/www
-            sudo systemctl stop apache2
-            echo -e "$verde Cuidado, esto puede$rojo BORRAR$verde algo valioso"
-            read -p " ¿Quieres borrar todo el directorio /var/www/? s/N → " input
-            if [ $input = 's' ] || [ $input = 'S' ]
-            then
-                sudo rm -R /var/www/*
-            else
-                echo -e "$verde No se borra /var/www$amarillo"
-            fi
 
-            # Copia todo el contenido WEB a /var/www
-            echo -e "$verde Copiando contenido dentro de /var/www"
-            sudo cp -R ./Apache2/www/* /var/www/
 
-            # Copia todo el contenido de configuración a /etc/apache2
-            echo -e "$verde Copiando archivos de configuración dentro de /etc/apache2"
-            sudo cp -R ./Apache2/etc/apache2/* /etc/apache2/
 
-            # Crear archivo de usuario con permisos para directorios restringidos
-            echo -e "$verde Creando usuario con permisos en apache"
-            sudo rm /var/www/.htpasswd 2>> /dev/null
-            while [ -z $input_user ]
-            do
-                read -p "Nombre de usuario para acceder al sitio web privado → " input_user
-            done
-            echo -e "$verde Introduce la contraseña para el sitio privado:$rojo"
-            sudo htpasswd -c /var/www/.htpasswd $input_user
-
-            # Cambia el dueño
-            echo -e "$verde Asignando dueños$gris"
-            sudo chown www-data:www-data -R /var/www
-            sudo chown root:root /etc/apache2/ports.conf
-
-            # Agrega el usuario al grupo www-data
-            echo -e "$verde Añadiendo el usuario al grupo$rojo www-data"
-            sudo adduser $mi_usuario www-data
-        }
-
-        echo -e "$verde Es posible generar una estructura dentro de /var/www"
-        echo -e "$verde Ten en cuenta que esto borrará el contenido actual"
-        echo -e "$verde También se modificarán archivos en /etc/apache2/*$red"
-        read -p " ¿Quieres Generar la estructura y habilitarla? s/N → " input
-        if [ $input = 's' ] || [ $input = 'S' ]
-        then
-            generar_www
-        else
-            echo -e "$verde No se genera la estructura predefinida y automática"
-        fi
 
         # Generar enlaces (desde ~/web a /var/www)
         function enlaces() {
@@ -165,6 +116,54 @@
 
 apache2_preconfiguracion() {
     echo -e "$VE Generando Pre-Configuraciones de$RO Apache 2$CL"
+
+    generar_www() {
+        ## Borrar contenido de /var/www
+        sudo systemctl stop apache2
+        echo -e "$VE Cuidado, esto puede$RO BORRAR$VE algo valioso$CL"
+        read -p " ¿Quieres borrar todo el directorio /var/www/? s/N → " input
+        if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
+            sudo rm -R /var/www/*
+        else
+            echo -e "$VE No se borra /var/www$CL"
+        fi
+
+        ## Copia todo el contenido WEB a /var/www
+        echo -e "$VE Copiando contenido dentro de /var/www$CL"
+        sudo cp -R ./Apache2/www/* /var/www/
+
+        ## Copia todo el contenido de configuración a /etc/apache2
+        echo -e "$VE Copiando archivos de configuración dentro de /etc/apache2$CL"
+        sudo cp -R ./Apache2/etc/apache2/* /etc/apache2/
+
+        ## Crear archivo de usuario con permisos para directorios restringidos
+        echo -e "$VE Creando usuario con permisos en apache$CL"
+        sudo rm /var/www/.htpasswd 2>> /dev/null
+        while [[ -z $input_user ]]; do
+            read -p "Nombre de usuario para acceder al sitio web privado → " input_user
+        done
+        echo -e "$VE Introduce la contraseña para el sitio privado:$RO"
+        sudo htpasswd -c /var/www/.htpasswd $input_user
+
+        ## Cambia el dueño
+        echo -e "$VE Asignando dueños$CL"
+        sudo chown www-data:www-data -R /var/www
+        sudo chown root:root /etc/apache2/ports.conf
+
+        ## Agrega el usuario al grupo www-data
+        echo -e "$VE Añadiendo el usuario al grupo$RO www-data$CL"
+        sudo adduser "$mi_usuario" "www-data"
+    }
+
+    echo -e "$VE Es posible generar una estructura dentro de /var/www"
+    echo -e "$VE Ten en cuenta que esto borrará el contenido actual"
+    echo -e "$VE También se modificarán archivos en /etc/apache2/*$RO"
+    read -p " ¿Quieres Generar la estructura y habilitarla? s/N → " input
+    if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
+        generar_www
+    else
+        echo -e "$VE No se genera la estructura predefinida y automática$CL"
+    fi
 }
 
 apache2_instalar() {
