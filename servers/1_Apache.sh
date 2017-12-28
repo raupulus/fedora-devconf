@@ -51,11 +51,11 @@ apache2_preconfiguracion() {
         sudo cp -R $WORKSCRIPT/servers/Apache2/www/* /var/www/
 
         ## Copia todo el contenido de configuración a /etc/apache2
-        echo -e "$VE Copiando archivos de configuración dentro de /etc/apache2$CL"
-        sudo cp -R $WORKSCRIPT/servers/Apache2/etc/apache2/* /etc/httpd/
+        echo -e "$VE Copiando archivos de configuración dentro de /etc/httpd$CL"
+        sudo cp -R $WORKSCRIPT/servers/Apache2/etc/httpd/* /etc/httpd/
 
         ## Crear archivo de usuario con permisos para directorios restringidos
-        echo -e "$VE Creando usuario con permisos en apache$CL"
+        echo -e "$VE Creando usuario con permisos en apache$RO"
         sudo rm /var/www/.htpasswd 2>> /dev/null
         while [[ -z $input_user ]]; do
             read -p "Nombre de usuario para acceder al sitio web privado → " input_user
@@ -89,7 +89,7 @@ apache2_preconfiguracion() {
         echo -e "$VE Puedes generar un enlace en tu home ~/web hacia /var/www/html"
         read -p " ¿Quieres generar el enlace? s/N → " input
         if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
-            sudo ln -s '/var/www/html/' "/home/$mi_usuario/web"
+            sudo ln -s '/var/www/html/' "/home/$USER/web"
             sudo chown -R "$USER:apache" "/home/$USER/web"
         else
             echo -e "$VE No se crea enlace desde ~/web a /var/www/html$CL"
