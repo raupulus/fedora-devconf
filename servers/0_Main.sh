@@ -19,6 +19,7 @@
 ############################
 ##     IMPORTACIONES      ##
 ############################
+source "$WORKSCRIPT/servers/1_Apache.sh"
 
 ############################
 ##       CONSTANTES       ##
@@ -34,6 +35,9 @@
 menuServidores() {
     ## Menú para gestionar servidores
     echo -e "$VE Menú para gestionar Servidores$RO"
+
+    ## Instalación del servidor apache
+    apache2_Instalador
 }
 ###########################
 ##       EJECUCIÓN       ##
