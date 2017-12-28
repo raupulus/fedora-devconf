@@ -182,6 +182,9 @@ apache2_postconfiguracion() {
     ## Habilitar que pueda entrar en directorio de usuario y seguir enlaces
     sudo setsebool -P httpd_enable_homedirs on
 
+    ## Habilitar el envío de correos
+    sudo setsebool -P httpd_can_sendmail on
+
     ## Reiniciar servidor Apache para aplicar configuración
     sudo systemctl start httpd.service || sudo systemctl restart httpd.service
 }
