@@ -69,8 +69,12 @@ apache2_preconfiguracion() {
         sudo chown -R root:root /etc/httpd/*
 
         ## Agrega el usuario al grupo apache
-        echo -e "$VE Añadiendo el usuario al grupo$RO www-data$CL"
-        sudo usermod -a -G apache "$USER"
+        echo -e "$VE Añadiendo el usuario al grupo$RO apache$CL"
+        sudo usermod -a -G 'apache' "$USER"
+
+        ## Agrega el usuario apache al grupo del usuario
+        echo -e "$VE Añadiendo el usuario$RO apache$VE al grupo$RO $USER$CL"
+        sudo usermod -a -G "$USER" 'apache'
     }
 
     echo -e "$VE Es posible generar una estructura dentro de /var/www"
@@ -101,8 +105,20 @@ apache2_preconfiguracion() {
         echo -e "$VE Este será desde el servidor /var/www/html/Publico/GIT a ~/GIT$RO"
         read -p " ¿Quieres crear el directorio y generar el enlace? s/N → " input
         if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
-            mkdir ~/GIT 2>> /dev/null && echo -e "$VE Se ha creado el directorio ~/GIT" || echo -e "$VE No se ha creado el directorio ~/GIT"
-            sudo ln -s /home/$USER/GIT /var/www/html/Publico/GIT
+            if [[ -d /home/$USER/GIT ]]; then
+                echo -e "$VE Ya existe$RO ~/GIT$VE y es un directorio$CL"
+            elif [[ -h /home/$USER/GIT ]]; then
+                echo -e "$VE Ya existe$RO ~/GIT$VE y es un enlace$CL"
+            else
+                if [[ -d /home/$USER/1_GIT ]]; then
+                    echo -e "$VE Creando enlace desde$RO ~/GIT$VE a ~/1_GIT$CL"
+                    ln -s "/home/$USER/1_GIT" "/home/$USER/GIT"
+                else
+                    echo -e "$VE Se crea el directorio ~/GIT$CL"
+                    mkdir "/home/$USER/GIT"
+                fi
+            fi
+            sudo ln -s "/home/$USER/GIT" '/var/www/html/Publico/GIT'
             sudo chown -R "$USER:apache" "/home/$USER/GIT"
         else
             echo -e "$VE No se crea enlaces ni directorio ~/GIT$CL"
