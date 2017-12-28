@@ -37,9 +37,7 @@ postgresql_preconfiguracion() {
 
 postgresql_instalar() {
     echo -e "$VE Instalando$RO PostgreSQL$CL"
-    sudo apt install -y postgresql postgresql-client >> /dev/null 2>> /dev/null
-    sudo apt install -y postgresql-contrib >> /dev/null 2>> /dev/null
-    sudo apt install -y postgresql-all >> /dev/null 2>> /dev/null
+    instalarSoftware 'postgresql' 'postgresql-server' 'postgresql-contrib' 'postgresql-odbc' 'postgresql-plperl' 'postgresql-plpython' 'postgresql-plpython3' 'postgresql-pltcl' 'python3-postgresql' 'postgresql_autodoc' 'postgresql-static'
 }
 
 postgresql_postconfiguracion() {
