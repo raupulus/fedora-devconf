@@ -179,6 +179,9 @@ apache2_postconfiguracion() {
     ## Habilitar inicio del servidor al arrancar
     sudo systemctl enable httpd.service
 
+    ## Habilitar que pueda entrar en directorio de usuario y seguir enlaces
+    sudo setsebool -P httpd_enable_homedirs on
+
     ## Reiniciar servidor Apache para aplicar configuración
     sudo systemctl start httpd.service || sudo systemctl restart httpd.service
 }
