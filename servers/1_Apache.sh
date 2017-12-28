@@ -179,6 +179,8 @@ apache2_postconfiguracion() {
     ## Habilitar inicio del servidor al arrancar
     sudo systemctl enable httpd.service
 
+    ## Directrices →  https://docs-old.fedoraproject.org/es-ES/Fedora/13/html/Managing_Confined_Services/sect-Managing_Confined_Services-The_Apache_HTTP_Server-Booleans.html
+
     ## Habilitar que pueda entrar en directorio de usuario y seguir enlaces
     sudo setsebool -P httpd_enable_homedirs on
 
