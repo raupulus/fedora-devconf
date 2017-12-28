@@ -33,7 +33,7 @@
 ###########################
 apache2_preconfiguracion() {
     echo -e "$VE Generando Pre-Configuraciones de$RO Apache 2$CL"
-    sudo groupadd www-data 2>> /dev/null
+    sudo groupadd apache 2>> /dev/null
 
     generar_www() {
         ## Borrar contenido de /var/www
@@ -65,17 +65,17 @@ apache2_preconfiguracion() {
 
         ## Cambia el dueño
         echo -e "$VE Asignando dueños$CL"
-        sudo chown www-data:www-data -R /var/www
-        sudo chown root:root /etc/httpd/ports.conf
+        sudo chown apache:apache -R /var/www
+        sudo chown -R root:root /etc/httpd/*
 
-        ## Agrega el usuario al grupo www-data
+        ## Agrega el usuario al grupo apache
         echo -e "$VE Añadiendo el usuario al grupo$RO www-data$CL"
-        sudo adduser "$mi_usuario" "www-data"
+        sudo usermod -a -G apache "$USER"
     }
 
     echo -e "$VE Es posible generar una estructura dentro de /var/www"
     echo -e "$VE Ten en cuenta que esto borrará el contenido actual"
-    echo -e "$VE También se modificarán archivos en /etc/apache2/*$RO"
+    echo -e "$VE También se modificarán archivos en /etc/httpd/*$RO"
     read -p " ¿Quieres Generar la estructura y habilitarla? s/N → " input
     if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
         generar_www
@@ -83,14 +83,14 @@ apache2_preconfiguracion() {
         echo -e "$VE No se genera la estructura predefinida y automática$CL"
     fi
 
-    # Generar enlaces (desde ~/web a /var/www)
+    ## Generar enlaces (desde ~/web a /var/www)
     function enlaces() {
         clear
         echo -e "$VE Puedes generar un enlace en tu home ~/web hacia /var/www/html"
         read -p " ¿Quieres generar el enlace? s/N → " input
         if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
             sudo ln -s '/var/www/html/' "/home/$mi_usuario/web"
-            sudo chown -R "$USER:www-data" "/home/$USER/web"
+            sudo chown -R "$USER:apache" "/home/$USER/web"
         else
             echo -e "$VE No se crea enlace desde ~/web a /var/www/html$CL"
         fi
@@ -103,7 +103,7 @@ apache2_preconfiguracion() {
         if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
             mkdir ~/GIT 2>> /dev/null && echo -e "$VE Se ha creado el directorio ~/GIT" || echo -e "$VE No se ha creado el directorio ~/GIT"
             sudo ln -s /home/$USER/GIT /var/www/html/Publico/GIT
-            sudo chown -R $USER:www-data /home/$USER/GIT
+            sudo chown -R "$USER:apache" "/home/$USER/GIT"
         else
             echo -e "$VE No se crea enlaces ni directorio ~/GIT$CL"
         fi
@@ -124,34 +124,20 @@ apache2_preconfiguracion() {
     if [[ $input = 's' ]] || [[ $input = 'S' ]]; then
         activar_hosts
     else
-        echo -e "$verde No se añade nada a /etc/hosts"
+        echo -e "$VE No se añade nada a$RO /etc/hosts$CL"
     fi
 
     ## Cambia los permisos
     permisos() {
-        echo -e "$verde Asignando permisos"
+        echo -e "$VE Asignando permisos$CL"
         sudo chmod 775 -R /var/www/*
         sudo chmod 700 /var/www/.htpasswd
         sudo chmod 700 /var/www/html/Privado/.htaccess
         sudo chmod 700 /var/www/html/Publico/.htaccess
         sudo chmod 700 /var/www/html/Privado/CMS/.htaccess
-        sudo chmod 755 /etc/httpd/ports.conf /etc/httpd/
-        sudo chmod 755 -R /etc/httpd/sites-available /etc/httpd/sites-enabled
+        sudo chmod 755 -R /etc/httpd/
     }
     permisos
-
-
-
-
-
-    ## TOFIX → Generar los hosts virtuales
-    ## Habilita Sitios Virtuales (VirtualHost)
-    #sudo a2ensite default.conf
-    #sudo a2ensite publico.conf
-    #sudo a2ensite privado.conf
-
-    ## Deshabilita Sitios Virtuales (VirtualHost)
-    #sudo a2dissite 000-default.conf
 }
 
 apache2_instalar() {
@@ -163,11 +149,11 @@ apache2_postconfiguracion() {
     echo -e "$VE Generando Post-Configuraciones$RO Apache2$CL"
 
     ## Activar Módulos
-    echo -e "$verde Activando módulos$red"
+    echo -e "$VE Activando módulos$CL"
     #sudo a2enmod rewrite
 
     ## Desactivar Módulos
-    echo -e "$verde Desactivando módulos$red"
+    echo -e "$VE Desactivando módulos$CL"
     #sudo a2dismod php5
 
     ## Añadir excepciones al cortafuegos
@@ -178,8 +164,7 @@ apache2_postconfiguracion() {
     sudo systemctl enable httpd.service
 
     ## Reiniciar servidor Apache para aplicar configuración
-    sudo systemctl start httpd.service
-    sudo systemctl restart httpd.service
+    sudo systemctl start httpd.service || sudo systemctl restart httpd.service
 }
 ###########################
 ##       EJECUCIÓN       ##
