@@ -31,7 +31,23 @@
 ###########################
 ##       FUNCIONES       ##
 ###########################
+postgresql_preconfiguracion() {
+
+}
+
+postgresql_instalar() {
+
+}
+
+postgresql_postconfiguracion() {
+
+}
 
 ###########################
 ##       EJECUCIÓN       ##
 ###########################
+postgresql_Instalador() {
+    postgresql_preconfiguracion
+    postgresql_instalar
+    postgresql_postconfiguracion
+}
