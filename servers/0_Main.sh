@@ -38,7 +38,7 @@ menuServidores() {
     echo -e "$VE Menú para gestionar Servidores$RO"
 
     ## Instalación del servidor apache
-    apache2_Instalador
+    #apache2_Instalador
 
     ## Instalación del servidor PostgreSQL
     postgresql_Instalador
