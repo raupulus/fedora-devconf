@@ -20,6 +20,7 @@
 ##     IMPORTACIONES      ##
 ############################
 source "$WORKSCRIPT/servers/1_Apache.sh"
+source "$WORKSCRIPT/servers/2_PostgreSQL.sh"
 
 ############################
 ##       CONSTANTES       ##
@@ -38,6 +39,9 @@ menuServidores() {
 
     ## Instalación del servidor apache
     apache2_Instalador
+
+    ## Instalación del servidor PostgreSQL
+    postgresql_Instalador
 }
 ###########################
 ##       EJECUCIÓN       ##
