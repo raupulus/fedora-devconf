@@ -20,6 +20,7 @@
 ############################
 ##     IMPORTACIONES      ##
 ############################
+source "$WORKSCRIPT/Personalizar/fonts.sh"
 
 ############################
 ##       CONSTANTES       ##
@@ -33,8 +34,10 @@
 ##       FUNCIONES       ##
 ###########################
 menuPersonalizacion() {
-    ## Instalar fuentes
     echo -e "$VE Menú de Personalización$CL"
+
+    ## Instalar fuentes
+    fuentes_instalador
 }
 ###########################
 ##       EJECUCIÓN       ##
