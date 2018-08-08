@@ -2,7 +2,7 @@
 ## Script en desarrollo
 ### No usar en el estado actual
 
-![Previsualización Fedora_Developer_Init](/preview.png)
+![Previsualización fedora-devconf](/preview.png)
 
 Instala todo el software y añade configuraciones personalizadas al sistema operativo y el usuario de forma que implementa un entorno para desarrollar aplicaciones web sin apenas intervención manual, ahorrando de esta forma mucho tiempo en preparar el sistema.
 
@@ -45,10 +45,10 @@ Asegurate de estar utilizando bash para ejecutar este script, en caso contrario 
 Modo de instalación tomando el directorio "home" del usuario actual:
 ```bash
     ## Clonar repositorio en nuestro directorio principal de usuario
-    git clone https://github.com/fryntiz/Fedora_Developer_Init "$HOME/Fedora_Developer_Init"
+    git clone https://gitlab.com/fryntiz/fedora-devconf "$HOME/fedora-devconf"
 
     ## Entrar al repositorio descargado
-    cd "$HOME/Fedora_Developer_Init"
+    cd "$HOME/fedora-devconf"
 
     ## Iniciar desde el script principal
     ./main.sh
@@ -56,13 +56,13 @@ Modo de instalación tomando el directorio "home" del usuario actual:
 
 También es posible realizar todo lo anterior en una sola orden:
 ```bash
-    git clone https://github.com/fryntiz/Fedora_Developer_Init "$HOME/Fedora_Developer_Init" && cd "$HOME/Fedora_Developer_Init" && ./main.sh
+    git clone https://github.com/fryntiz/fedora-devconf "$HOME/fedora-devconf" && cd "$HOME/fedora-devconf" && ./main.sh
 ```
 
 ## Guía de estilos
 Esta serie de script siguen un patrón de estilos definido en mi propia guía de estilos para bash.
 
-Dicha guía puedes consultarla en la siguiente dirección: https://github.com/fryntiz/Bash_Style_Guide
+Dicha guía puedes consultarla en la siguiente dirección: https://gitlab.com/fryntiz/bash-guide-style
 
 ## Lenguajes de programación y de marcas que se configurarán
 Principalmente la instalación del lenguaje (si procede) y la capa de configuración dentro de los editores.
